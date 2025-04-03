@@ -1,5 +1,8 @@
 package com.github.syndexmx.demoairfleet.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum AircraftType {
     DEFAULTVALUE ("Not Defined"),
     BOEING_737_600 ("Boeing-737-600"),
@@ -11,9 +14,9 @@ public enum AircraftType {
     BOEING_777_2H6ER ("Boeing-777-2H6 ER"),
     BOEING_737_MAX_7 ("Boeing-737 MAX-7");
 
-    private String name;
+    private String typeName;
 
-    AircraftType(String name) {
-        this.name = name;
+    AircraftType(String typeName) {
+        this.typeName = typeName;
     }
 }
