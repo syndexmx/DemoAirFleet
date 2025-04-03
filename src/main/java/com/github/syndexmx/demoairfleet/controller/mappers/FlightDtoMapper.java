@@ -1,10 +1,10 @@
 package com.github.syndexmx.demoairfleet.controller.mappers;
 
 import com.github.syndexmx.demoairfleet.controller.dtos.FlightDto;
-import com.github.syndexmx.demoairfleet.domain.enums.FlightData;
 import com.github.syndexmx.demoairfleet.domain.Flight;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Component
@@ -13,7 +13,11 @@ public class FlightDtoMapper {
     public FlightDto flightToFlightDto(Flight flight) {
         final FlightDto flightDto = FlightDto.builder()
                 .id(flight.getId().toString())
-                .flightFieldContent(flight.getFlightData().toString())
+                .name(flight.getName())
+                .route(flight.getRoute())
+                .pax(flight.getPax())
+                .callsign(flight.getCallsign())
+                .date(flight.getDate().toString())
                 .build();
         return flightDto;
     }
@@ -21,7 +25,11 @@ public class FlightDtoMapper {
     public Flight flightDtoToFlight(FlightDto flightDto) {
         Flight flight = Flight.builder()
                 .id(UUID.fromString(flightDto.getId()))
-                .flightData(FlightData.valueOf(flightDto.getFlightFieldContent()))
+                .name(flightDto.getName())
+                .route(flightDto.getRoute())
+                .pax(flightDto.getPax())
+                .callsign(flightDto.getCallsign())
+                .date(LocalDate.parse(flightDto.getDate()))
                 .build();
         return flight;
     }
@@ -29,7 +37,11 @@ public class FlightDtoMapper {
     public Flight flightDtoNoIdToFlight(FlightDto flightDto) {
         Flight flight = Flight.builder()
                 .id(UUID.randomUUID())
-                .flightData(FlightData.valueOf(flightDto.getFlightFieldContent()))
+                .name(flightDto.getName())
+                .route(flightDto.getRoute())
+                .pax(flightDto.getPax())
+                .callsign(flightDto.getCallsign())
+                .date(LocalDate.parse(flightDto.getDate()))
                 .build();
         return flight;
     }

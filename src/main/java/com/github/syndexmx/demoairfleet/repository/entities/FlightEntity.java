@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -18,8 +19,11 @@ public class FlightEntity {
 
     @Id
     private UUID flightId;
-
-    private String flightFieldContent;
+    private String name;
+    private String route;
+    private String callsign;
+    private Integer pax;
+    private LocalDate date;
 
 
 }

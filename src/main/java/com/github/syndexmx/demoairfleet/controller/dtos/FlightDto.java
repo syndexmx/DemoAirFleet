@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -12,7 +14,10 @@ import lombok.NoArgsConstructor;
 public class FlightDto {
 
     private String id;
-
-    private String flightFieldContent;
+    private String name;
+    private String route;
+    private String callsign;
+    private Integer pax;
+    private String date;
 
 }
