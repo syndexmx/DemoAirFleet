@@ -40,7 +40,7 @@ public class AircraftController {
     }
 
     @GetMapping(ROOT_API_PATH +"/{aircraftId}")
-    public ResponseEntity<AircraftDto> retrieve(@PathVariable String aircraftId) {
+    public ResponseEntity<AircraftDto> retrieve(@PathVariable Long aircraftId) {
         final Optional<Aircraft> foundAircraft = aircraftService.findById(aircraftId);
         if (foundAircraft.isEmpty()) {
             return new ResponseEntity<AircraftDto>(HttpStatus.NOT_FOUND);
@@ -76,7 +76,7 @@ public class AircraftController {
     }
 
     @DeleteMapping(ROOT_API_PATH +"/{aircraftId}")
-    public ResponseEntity deleteById(@PathVariable String aircraftId) {
+    public ResponseEntity deleteById(@PathVariable Long aircraftId) {
         log.info("DELETE " + ROOT_API_PATH + "/" + aircraftId);
         aircraftService.deleteById(aircraftId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);

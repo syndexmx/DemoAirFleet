@@ -15,14 +15,14 @@ public interface AircraftService {
 
     Aircraft save(Aircraft aircraft);
 
-    Optional<Aircraft> findById(String aircraftId);
+    Optional<Aircraft> findById(Long aircraftId);
 
     List<Aircraft> listAll();
 
-    boolean isPresent(String aircraftId);
+    boolean isPresent(Long aircraftId);
 
     boolean isPresent(Aircraft aircraft);
 
-    void deleteById(String aircraftId);
+    void deleteById(Long aircraftId);
 
 }

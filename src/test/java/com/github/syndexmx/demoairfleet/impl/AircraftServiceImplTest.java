@@ -23,7 +23,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-
 @ExtendWith(MockitoExtension.class)
 public class AircraftServiceImplTest {
 
@@ -57,8 +56,8 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEmptyWhenNoEntity() {
         final Aircraft nonExistentAircraft = AircraftTestSupplierKit.getTestNonExistentAircraft();
-        final String nonExistentId = nonExistentAircraft.getId().toString();
-        when(aircraftRepository.findById(eq(UUID.fromString(nonExistentId)))).thenReturn(Optional.empty());
+        final Long nonExistentId = nonExistentAircraft.getId();
+        when(aircraftRepository.findById(eq(nonExistentId))).thenReturn(Optional.empty());
         final Optional<Aircraft> foundAircraft = underTest.findById(nonExistentId);
         assertEquals(Optional.empty(), foundAircraft);
     }
@@ -68,8 +67,8 @@ public class AircraftServiceImplTest {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
         AircraftEntityMapper aircraftEntityMapper = new AircraftEntityMapper(); // TO DO: make it work
         final AircraftEntity aircraftEntity = aircraftEntityMapper.aircraftToAircraftEntity(aircraft);
-        final String idString = aircraft.getId().toString();
-        when(aircraftRepository.findById(eq(UUID.fromString(idString)))).thenReturn(Optional.of(aircraftEntity));
+        final Long idString = aircraft.getId();
+        when(aircraftRepository.findById(eq(idString))).thenReturn(Optional.of(aircraftEntity));
         final Optional<Aircraft> foundAircraft = underTest.findById(idString);
         assertEquals(Optional.of(aircraft), foundAircraft);
     }
@@ -96,7 +95,7 @@ public class AircraftServiceImplTest {
     public void testThatIsPresentReturnsFalseWhenAbsent() {
         when(aircraftRepository.existsById(any())).thenReturn(false);
         final Aircraft nonExistentAircraft = AircraftTestSupplierKit.getTestNonExistentAircraft();
-        final String nonExistentUuid = nonExistentAircraft.getId().toString();
+        final Long nonExistentUuid = nonExistentAircraft.getId();
         boolean result = underTest.isPresent(nonExistentUuid);
         assertFalse(result);
     }
@@ -104,8 +103,8 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatIsPresentReturnsTrueWhenExists() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final String idString = aircraft.getId().toString();
-        when(aircraftRepository.existsById(UUID.fromString(idString))).thenReturn(true);
+        final Long idString = aircraft.getId();
+        when(aircraftRepository.existsById(idString)).thenReturn(true);
         boolean result = underTest.isPresent(idString);
         assertTrue(result);
     }
@@ -121,8 +120,8 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatAircraftIsPresentReturnsTrueWhenExists() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final String idString = aircraft.getId().toString();
-        when(aircraftRepository.existsById(UUID.fromString(idString))).thenReturn(true);
+        final Long id = aircraft.getId();
+        when(aircraftRepository.existsById(id)).thenReturn(true);
         boolean result = underTest.isPresent(aircraft);
         assertTrue(result);
     }
@@ -130,8 +129,8 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatDeleteAircraftDeletesAircraft() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final String idString = aircraft.getId().toString();
+        final Long idString = aircraft.getId();
         underTest.deleteById(idString);
-        verify(aircraftRepository).deleteById(eq(UUID.fromString(idString)));
+        verify(aircraftRepository).deleteById(eq(idString));
     }
 }

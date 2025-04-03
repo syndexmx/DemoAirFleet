@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AircraftDto {
 
-    private String id;
+    private Long id;
     private String aircraftType;
     private String serialNumber;
     private String registration;

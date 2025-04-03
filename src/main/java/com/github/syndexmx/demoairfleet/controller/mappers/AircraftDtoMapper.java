@@ -30,7 +30,7 @@ public class AircraftDtoMapper {
 
     public AircraftDto aircraftToAircraftDto(Aircraft aircraft) {
         final AircraftDto aircraftDto = AircraftDto.builder()
-                .id(aircraft.getId().toString())
+                .id(aircraft.getId())
                 .aircraftType(aircraft.getAircraftType().getTypeName())
                 .lastInspection(aircraft.getLastInspection().toString())
                 .startOperation(aircraft.getStartOperation().toString())
@@ -46,7 +46,7 @@ public class AircraftDtoMapper {
 
     public Aircraft aircraftDtoToAircraft(AircraftDto aircraftDto) {
         Aircraft aircraft = Aircraft.builder()
-                .id(UUID.fromString(aircraftDto.getId()))
+                .id(aircraftDto.getId())
                 .aircraftType(typeNameToTypeType.get(aircraftDto.getAircraftType()))
                 .lastInspection(LocalDate.parse(aircraftDto.getLastInspection()))
                 .startOperation(LocalDate.parse(aircraftDto.getStartOperation()))
@@ -62,7 +62,7 @@ public class AircraftDtoMapper {
 
     public Aircraft aircraftDtoNoIdToAircraft(AircraftDto aircraftDto) {
         Aircraft aircraft = Aircraft.builder()
-                .id(UUID.randomUUID())
+                .id(null)
                 .aircraftType(typeNameToTypeType.get(aircraftDto.getAircraftType()))
                 .lastInspection(LocalDate.parse(aircraftDto.getLastInspection()))
                 .startOperation(LocalDate.parse(aircraftDto.getStartOperation()))

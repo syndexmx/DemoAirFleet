@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 
 @Entity
@@ -20,7 +19,8 @@ import java.util.UUID;
 public class AircraftEntity {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String aircraftType;
     private String serialNumber;
     private String registration;

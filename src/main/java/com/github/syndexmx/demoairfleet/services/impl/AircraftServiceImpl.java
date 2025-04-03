@@ -31,8 +31,7 @@ public class AircraftServiceImpl implements AircraftService {
 
     @Override
     public Aircraft create(Aircraft aircraft) {
-        UUID spoofId = UUID.randomUUID();
-        aircraft.setId(spoofId);
+        aircraft.setId(null);
         final AircraftEntity savedEntity = aircraftRepository.save(aircraftEntityMapper
                 .aircraftToAircraftEntity(aircraft));
         final Aircraft savedAircraft = aircraftEntityMapper.aircraftEntityToAircraft(savedEntity);
@@ -48,9 +47,9 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public Optional<Aircraft> findById(String aircraftId) {
+    public Optional<Aircraft> findById(Long aircraftId) {
         final Optional<AircraftEntity> aircraftEntityFound = aircraftRepository
-                .findById(UUID.fromString(aircraftId));
+                .findById(aircraftId);
         final Optional<Aircraft> aircraftFound = aircraftEntityFound.map(aircraftEntity ->
                 aircraftEntityMapper.aircraftEntityToAircraft(aircraftEntity));
         return aircraftFound;
@@ -65,8 +64,8 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public boolean isPresent(String aircraftId) {
-        return aircraftRepository.existsById(UUID.fromString(aircraftId));
+    public boolean isPresent(Long aircraftId) {
+        return aircraftRepository.existsById(aircraftId);
     }
 
     @Override
@@ -75,9 +74,9 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public void deleteById(String aircraftId) {
+    public void deleteById(Long aircraftId) {
         try {
-            aircraftRepository.deleteById(UUID.fromString(aircraftId));
+            aircraftRepository.deleteById(aircraftId);
         } catch (final EmptyResultDataAccessException e) {
             log.debug("Attempted to delete non-existent aircraft");
         }

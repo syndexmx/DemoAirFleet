@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +15,7 @@ import java.util.UUID;
 @Data
 public class Aircraft {
 
-    private UUID id;
+    private Long id;
     private AircraftType aircraftType;
     private String serialNumber;
     private String registration;
