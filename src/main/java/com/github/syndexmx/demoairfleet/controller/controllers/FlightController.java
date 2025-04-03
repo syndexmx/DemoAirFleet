@@ -3,7 +3,7 @@ package com.github.syndexmx.demoairfleet.controller.controllers;
 import com.github.syndexmx.demoairfleet.controller.mappers.FlightDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Flight;
 import com.github.syndexmx.demoairfleet.controller.dtos.FlightDto;
-import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectApiRequestException;
+import com.github.syndexmx.demoairfleet.controller.exceptions.AirfleetIncorrectApiRequestException;
 import com.github.syndexmx.demoairfleet.services.FlightService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

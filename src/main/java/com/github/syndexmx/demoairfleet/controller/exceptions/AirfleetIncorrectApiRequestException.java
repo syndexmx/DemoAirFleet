@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.exceptions;
+package com.github.syndexmx.demoairfleet.controller.exceptions;
 
 public class AirfleetIncorrectApiRequestException extends RuntimeException{
 
