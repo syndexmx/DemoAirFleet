@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -15,7 +16,14 @@ import java.util.UUID;
 public class Aircraft {
 
     private UUID id;
-
     private AircraftType aircraftType;
+    private String serialNumber;
+    private String registration;
+    private String livery;
+    private Integer pax;
+    private Integer engineCount;
+    private Integer hoursInFlight;
+    private LocalDate startService;
+    private LocalDate lastInspection;
 
 }

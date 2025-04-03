@@ -14,7 +14,14 @@ import lombok.NoArgsConstructor;
 public class AircraftDto {
 
     private String id;
-
-    private String aircraftFieldContent;
+    private String aircraftType;
+    private String serialNumber;
+    private String registration;
+    private String livery;
+    private Integer pax;
+    private Integer engineCount;
+    private Integer hoursInFlight;
+    private String startService;
+    private String lastInspection;
 
 }
