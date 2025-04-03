@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Service
@@ -33,16 +32,16 @@ public class EngineServiceImpl implements EngineService {
     public Engine create(Engine engine) {
         engine.setId(null);
         final EngineEntity savedEntity = engineRepository.save(engineEntityMapper
-                .engineToengineEntity(engine));
-        final Engine savedEngine = engineEntityMapper.engineEntityToengine(savedEntity);
+                .engineToEngineEntity(engine));
+        final Engine savedEngine = engineEntityMapper.engineEntityToEngine(savedEntity);
         return savedEngine;
     }
 
     @Override
     public Engine save(Engine engine) {
         final EngineEntity savedEntity = engineRepository.save(engineEntityMapper
-                .engineToengineEntity(engine));
-        final Engine savedEngine = engineEntityMapper.engineEntityToengine(savedEntity);
+                .engineToEngineEntity(engine));
+        final Engine savedEngine = engineEntityMapper.engineEntityToEngine(savedEntity);
         return savedEngine;
     }
 
@@ -51,7 +50,7 @@ public class EngineServiceImpl implements EngineService {
         final Optional<EngineEntity> engineEntityFound = engineRepository
                 .findById(engineId);
         final Optional<Engine> engineFound = engineEntityFound.map(engineEntity ->
-                engineEntityMapper.engineEntityToengine(engineEntity));
+                engineEntityMapper.engineEntityToEngine(engineEntity));
         return engineFound;
     }
 
@@ -59,7 +58,7 @@ public class EngineServiceImpl implements EngineService {
     public List<Engine> listAll() {
         final List<EngineEntity> listOfFoundengineEntities = engineRepository.findAll();
         final List<Engine> listOfFoundEngines =listOfFoundengineEntities.stream()
-                .map(entity -> engineEntityMapper.engineEntityToengine(entity)).toList();
+                .map(entity -> engineEntityMapper.engineEntityToEngine(entity)).toList();
         return listOfFoundEngines;
     }
 

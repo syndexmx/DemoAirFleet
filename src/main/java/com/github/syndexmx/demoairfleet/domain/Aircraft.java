@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +26,6 @@ public class Aircraft {
     private Integer hoursInFlight;
     private LocalDate startOperation;
     private LocalDate lastInspection;
+    private List<Engine> engineList;
 
 }

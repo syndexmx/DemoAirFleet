@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EngineEntityMapper {
 
-    public EngineEntity engineToengineEntity(Engine engine) {
+    public EngineEntity engineToEngineEntity(Engine engine) {
         final EngineEntity engineEntity = EngineEntity.builder()
                 .id(engine.getId())
                 .engineType(engine.getEngineType().toString())
@@ -22,7 +22,7 @@ public class EngineEntityMapper {
         return engineEntity;
     }
 
-    public Engine engineEntityToengine(EngineEntity engineEntity) {
+    public Engine engineEntityToEngine(EngineEntity engineEntity) {
         Engine engine = Engine.builder()
                 .id(engineEntity.getId())
                 .engineType(EngineType.valueOf(engineEntity.getEngineType()))

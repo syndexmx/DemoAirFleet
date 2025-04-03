@@ -5,6 +5,7 @@ import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -16,12 +17,16 @@ import java.util.UUID;
 @Component
 public class AircraftDtoMapper {
 
+    private EngineDtoMapper engineDtoMapper;
+
     private static Map<String, AircraftType> typeNameToTypeType = new HashMap<>();
 
-    public AircraftDtoMapper() {
+    @Autowired
+    public AircraftDtoMapper(EngineDtoMapper engineDtoMapper) {
         for (AircraftType aircraftType : AircraftType.values()) {
             typeNameToTypeType.put(aircraftType.getTypeName(), aircraftType);
         }
+        this.engineDtoMapper = engineDtoMapper;
     }
 
     public AircraftType getTypeByName(String name) {
@@ -40,6 +45,10 @@ public class AircraftDtoMapper {
                 .pax(aircraft.getPax())
                 .registration(aircraft.getRegistration())
                 .serialNumber(aircraft.getSerialNumber())
+                .engineList(aircraft.getEngineList().stream()
+                        .map(engineDto -> engineDtoMapper
+                                .engineToEngineDto(engineDto))
+                        .toList())
                 .build();
         return aircraftDto;
     }
@@ -56,6 +65,10 @@ public class AircraftDtoMapper {
                 .pax(aircraftDto.getPax())
                 .registration(aircraftDto.getRegistration())
                 .serialNumber(aircraftDto.getSerialNumber())
+                .engineList(aircraftDto.getEngineList().stream()
+                        .map(engineDto -> engineDtoMapper
+                                .engineDtoToEngine(engineDto))
+                        .toList())
                 .build();
         return aircraft;
     }
@@ -72,6 +85,10 @@ public class AircraftDtoMapper {
                 .pax(aircraftDto.getPax())
                 .registration(aircraftDto.getRegistration())
                 .serialNumber(aircraftDto.getSerialNumber())
+                .engineList(aircraftDto.getEngineList().stream()
+                        .map(engineDto -> engineDtoMapper
+                                .engineDtoToEngine(engineDto))
+                        .toList())
                 .build();
         return aircraft;
     }

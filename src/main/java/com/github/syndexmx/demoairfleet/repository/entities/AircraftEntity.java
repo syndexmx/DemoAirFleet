@@ -1,6 +1,7 @@
 package com.github.syndexmx.demoairfleet.repository.entities;
 
 
+import com.github.syndexmx.demoairfleet.domain.Engine;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -30,5 +32,8 @@ public class AircraftEntity {
     private Integer hoursInFlight;
     private LocalDate startOperation;
     private LocalDate lastInspection;
+
+    @OneToMany(cascade = CascadeType.DETACH)
+    private List<EngineEntity> engineList;
 
 }

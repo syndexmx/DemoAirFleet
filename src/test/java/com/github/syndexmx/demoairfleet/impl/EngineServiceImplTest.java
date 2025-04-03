@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,7 +36,7 @@ public class EngineServiceImplTest {
     public void testThatengineIsCreated() {
         Engine engine = EngineTestSupplierKit.getTestengine();
         EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        EngineEntity engineEntity = engineEntityMapper.engineToengineEntity(engine);
+        EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
         when(engineRepository.save(any())).thenReturn(engineEntity);
         final Engine savedEngine = underTest.create(engine);
         engine.setId(savedEngine.getId());
@@ -48,7 +47,7 @@ public class EngineServiceImplTest {
     public void testThatengineIsSaved() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToengineEntity(engine);
+        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
         when(engineRepository.save(eq(engineEntity))).thenReturn(engineEntity);
         final Engine savedEngine = underTest.save(engine);
         assertEquals(engine, savedEngine);
@@ -67,7 +66,7 @@ public class EngineServiceImplTest {
     public void testThatFindByIdReturnsEntityWhenPresent() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToengineEntity(engine);
+        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
         final Long id = engine.getId();
         when(engineRepository.findById(eq(id))).thenReturn(Optional.of(engineEntity));
         final Optional<Engine> foundengine = underTest.findById(id);
@@ -85,7 +84,7 @@ public class EngineServiceImplTest {
     public void testListenginesReturnsListWhenExist() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToengineEntity(engine);
+        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
         List<EngineEntity> listOfExisting = new ArrayList<>(List.of(engineEntity));
         when(engineRepository.findAll()).thenReturn(listOfExisting);
         final List<Engine> result = underTest.listAll();
