@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 
 @AllArgsConstructor
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Data
 public class Engine {
 
-    private UUID id;
+    private Long id;
     private EngineType engineType;
     private String serialNumber;
     private Integer hoursInFlight;

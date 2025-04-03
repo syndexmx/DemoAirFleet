@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EngineDto {
 
-    private String id;
+    private Long id;
     private String engineTypeName;
     private String serialNumber;
     private Integer hoursInFlight;

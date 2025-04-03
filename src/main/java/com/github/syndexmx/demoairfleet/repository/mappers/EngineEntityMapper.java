@@ -12,7 +12,7 @@ public class EngineEntityMapper {
 
     public EngineEntity engineToengineEntity(Engine engine) {
         final EngineEntity engineEntity = EngineEntity.builder()
-                .engineId(engine.getId())
+                .id(engine.getId())
                 .engineType(engine.getEngineType().toString())
                 .lastInspection(engine.getLastInspection())
                 .startOperation(engine.getStartOperation())
@@ -24,7 +24,7 @@ public class EngineEntityMapper {
 
     public Engine engineEntityToengine(EngineEntity engineEntity) {
         Engine engine = Engine.builder()
-                .id(engineEntity.getEngineId())
+                .id(engineEntity.getId())
                 .engineType(EngineType.valueOf(engineEntity.getEngineType()))
                 .lastInspection(engineEntity.getLastInspection())
                 .startOperation(engineEntity.getStartOperation())

@@ -15,14 +15,14 @@ public interface EngineService {
 
     Engine save(Engine engine);
 
-    Optional<Engine> findById(String engineId);
+    Optional<Engine> findById(Long engineId);
 
     List<Engine> listAll();
 
-    boolean isPresent(String engineId);
+    boolean isPresent(Long engineId);
 
     boolean isPresent(Engine engine);
 
-    void deleteById(String engineId);
+    void deleteById(Long engineId);
 
 }

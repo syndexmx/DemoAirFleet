@@ -31,8 +31,7 @@ public class EngineServiceImpl implements EngineService {
 
     @Override
     public Engine create(Engine engine) {
-        UUID spoofId = UUID.randomUUID();
-        engine.setId(spoofId);
+        engine.setId(null);
         final EngineEntity savedEntity = engineRepository.save(engineEntityMapper
                 .engineToengineEntity(engine));
         final Engine savedEngine = engineEntityMapper.engineEntityToengine(savedEntity);
@@ -48,9 +47,9 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public Optional<Engine> findById(String engineId) {
+    public Optional<Engine> findById(Long engineId) {
         final Optional<EngineEntity> engineEntityFound = engineRepository
-                .findById(UUID.fromString(engineId));
+                .findById(engineId);
         final Optional<Engine> engineFound = engineEntityFound.map(engineEntity ->
                 engineEntityMapper.engineEntityToengine(engineEntity));
         return engineFound;
@@ -65,8 +64,8 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public boolean isPresent(String engineId) {
-        return engineRepository.existsById(UUID.fromString(engineId));
+    public boolean isPresent(Long engineId) {
+        return engineRepository.existsById(engineId);
     }
 
     @Override
@@ -75,9 +74,9 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public void deleteById(String engineId) {
+    public void deleteById(Long engineId) {
         try {
-            engineRepository.deleteById(UUID.fromString(engineId));
+            engineRepository.deleteById(engineId);
         } catch (final EmptyResultDataAccessException e) {
             log.debug("Attempted to delete non-existent engine");
         }

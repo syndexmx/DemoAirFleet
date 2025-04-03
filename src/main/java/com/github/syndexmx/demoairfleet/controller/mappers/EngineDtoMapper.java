@@ -25,7 +25,7 @@ public class EngineDtoMapper {
 
     public EngineDto engineToEngineDto(Engine engine) {
         final EngineDto engineDto = EngineDto.builder()
-                .id(engine.getId().toString())
+                .id(engine.getId())
                 .engineTypeName(engine.getEngineType().getTypeName())
                 .lastInspection(engine.getLastInspection().toString())
                 .startOperation(engine.getStartOperation().toString())
@@ -37,7 +37,7 @@ public class EngineDtoMapper {
 
     public Engine engineDtoToEngine(EngineDto engineDto) {
         Engine engine = Engine.builder()
-                .id(UUID.fromString(engineDto.getId()))
+                .id(engineDto.getId())
                 .engineType(typeNameToTypeType.get(engineDto.getEngineTypeName()))
                 .lastInspection(LocalDate.parse(engineDto.getLastInspection()))
                 .startOperation(LocalDate.parse(engineDto.getStartOperation()))
@@ -49,7 +49,7 @@ public class EngineDtoMapper {
 
     public Engine engineDtoNoIdToengine(EngineDto engineDto) {
         Engine engine = Engine.builder()
-                .id(UUID.randomUUID())
+                .id(null)
                 .engineType(typeNameToTypeType.get(engineDto.getEngineTypeName()))
                 .lastInspection(LocalDate.parse(engineDto.getLastInspection()))
                 .startOperation(LocalDate.parse(engineDto.getStartOperation()))

@@ -57,8 +57,8 @@ public class EngineServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEmptyWhenNoEntity() {
         final Engine nonExistentEngine = EngineTestSupplierKit.getTestNonExistentengine();
-        final String nonExistentId = nonExistentEngine.getId().toString();
-        when(engineRepository.findById(eq(UUID.fromString(nonExistentId)))).thenReturn(Optional.empty());
+        final Long nonExistentId = nonExistentEngine.getId();
+        when(engineRepository.findById(eq(nonExistentId))).thenReturn(Optional.empty());
         final Optional<Engine> foundengine = underTest.findById(nonExistentId);
         assertEquals(Optional.empty(), foundengine);
     }
@@ -68,9 +68,9 @@ public class EngineServiceImplTest {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
         final EngineEntity engineEntity = engineEntityMapper.engineToengineEntity(engine);
-        final String idString = engine.getId().toString();
-        when(engineRepository.findById(eq(UUID.fromString(idString)))).thenReturn(Optional.of(engineEntity));
-        final Optional<Engine> foundengine = underTest.findById(idString);
+        final Long id = engine.getId();
+        when(engineRepository.findById(eq(id))).thenReturn(Optional.of(engineEntity));
+        final Optional<Engine> foundengine = underTest.findById(id);
         assertEquals(Optional.of(engine), foundengine);
     }
 
@@ -96,7 +96,7 @@ public class EngineServiceImplTest {
     public void testThatIsPresentReturnsFalseWhenAbsent() {
         when(engineRepository.existsById(any())).thenReturn(false);
         final Engine nonExistentEngine = EngineTestSupplierKit.getTestNonExistentengine();
-        final String nonExistentUuid = nonExistentEngine.getId().toString();
+        final Long nonExistentUuid = nonExistentEngine.getId();
         boolean result = underTest.isPresent(nonExistentUuid);
         assertFalse(result);
     }
@@ -104,9 +104,9 @@ public class EngineServiceImplTest {
     @Test
     public void testThatIsPresentReturnsTrueWhenExists() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        final String idString = engine.getId().toString();
-        when(engineRepository.existsById(UUID.fromString(idString))).thenReturn(true);
-        boolean result = underTest.isPresent(idString);
+        final Long id = engine.getId();
+        when(engineRepository.existsById(id)).thenReturn(true);
+        boolean result = underTest.isPresent(id);
         assertTrue(result);
     }
 
@@ -121,8 +121,8 @@ public class EngineServiceImplTest {
     @Test
     public void testThatengineIsPresentReturnsTrueWhenExists() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        final String idString = engine.getId().toString();
-        when(engineRepository.existsById(UUID.fromString(idString))).thenReturn(true);
+        final Long id = engine.getId();
+        when(engineRepository.existsById(id)).thenReturn(true);
         boolean result = underTest.isPresent(engine);
         assertTrue(result);
     }
@@ -130,8 +130,8 @@ public class EngineServiceImplTest {
     @Test
     public void testThatDeleteengineDeletesengine() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        final String idString = engine.getId().toString();
-        underTest.deleteById(idString);
-        verify(engineRepository).deleteById(eq(UUID.fromString(idString)));
+        final Long id = engine.getId();
+        underTest.deleteById(id);
+        verify(engineRepository).deleteById(eq(id));
     }
 }

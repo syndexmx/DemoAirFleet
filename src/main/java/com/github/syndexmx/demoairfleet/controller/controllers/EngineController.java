@@ -40,7 +40,7 @@ public class EngineController {
     }
 
     @GetMapping(ROOT_API_PATH +"/{engineId}")
-    public ResponseEntity<EngineDto> retrieve(@PathVariable String engineId) {
+    public ResponseEntity<EngineDto> retrieve(@PathVariable Long engineId) {
         final Optional<Engine> foundengine = engineService.findById(engineId);
         if (foundengine.isEmpty()) {
             return new ResponseEntity<EngineDto>(HttpStatus.NOT_FOUND);
@@ -76,7 +76,7 @@ public class EngineController {
     }
 
     @DeleteMapping(ROOT_API_PATH +"/{engineId}")
-    public ResponseEntity deleteById(@PathVariable String engineId) {
+    public ResponseEntity deleteById(@PathVariable Long engineId) {
         log.info("DELETE " + ROOT_API_PATH + "/" + engineId);
         engineService.deleteById(engineId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
