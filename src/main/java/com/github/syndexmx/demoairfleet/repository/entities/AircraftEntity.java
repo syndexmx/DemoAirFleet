@@ -18,6 +18,8 @@ import java.util.List;
 @Builder
 @Data
 @Table(name = "aircrafts")
+@NamedEntityGraph(name = "aircraft_entity-graph",
+        attributeNodes = @NamedAttributeNode("engineList"))
 public class AircraftEntity {
 
     @Id
