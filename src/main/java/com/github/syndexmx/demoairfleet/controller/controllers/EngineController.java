@@ -3,7 +3,7 @@ package com.github.syndexmx.demoairfleet.controller.controllers;
 import com.github.syndexmx.demoairfleet.controller.mappers.EngineDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Engine;
 import com.github.syndexmx.demoairfleet.controller.dtos.EngineDto;
-import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectIdApiRequestException;
+import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectApiRequestException;
 import com.github.syndexmx.demoairfleet.services.EngineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class EngineController {
                                             @RequestBody final EngineDto engineDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + engineId + engineDto.toString());
         if (Long.parseLong(engineId) != (long)engineDto.getId()) {
-            throw new AirfleetIncorrectIdApiRequestException("Path id and inner DTO id should not differ.");
+            throw new AirfleetIncorrectApiRequestException("Path id and inner DTO id should not differ.");
         }
         final Engine engine = engineDtoMapper.engineDtoToEngine(engineDto);
         if (!engineService.isPresent(engine)) {

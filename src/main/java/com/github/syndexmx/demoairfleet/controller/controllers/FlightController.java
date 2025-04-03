@@ -3,7 +3,7 @@ package com.github.syndexmx.demoairfleet.controller.controllers;
 import com.github.syndexmx.demoairfleet.controller.mappers.FlightDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Flight;
 import com.github.syndexmx.demoairfleet.controller.dtos.FlightDto;
-import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectIdApiRequestException;
+import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectApiRequestException;
 import com.github.syndexmx.demoairfleet.services.FlightService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class FlightController {
                                             @RequestBody final FlightDto flightDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + flightId + flightDto.toString());
         if (!flightId.equals(flightDto.getId())) {
-            throw new AirfleetIncorrectIdApiRequestException("Path id and inner DTO id should not differ.");
+            throw new AirfleetIncorrectApiRequestException("Path id and inner DTO id should not differ.");
         }
         final Flight flight = flightDtoMapper.flightDtoToFlight(flightDto);
         if (!flightService.isPresent(flight)) {
