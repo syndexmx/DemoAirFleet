@@ -1,14 +1,11 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
-
-import com.github.syndexmx.demoairfleet.domain.Engine;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 
 @AllArgsConstructor
 @NoArgsConstructor

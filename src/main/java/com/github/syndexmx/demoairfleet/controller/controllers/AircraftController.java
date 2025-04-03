@@ -1,9 +1,9 @@
 package com.github.syndexmx.demoairfleet.controller.controllers;
 
-
 import com.github.syndexmx.demoairfleet.controller.mappers.AircraftDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
+import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectIdApiRequestException;
 import com.github.syndexmx.demoairfleet.services.AircraftService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @Slf4j
@@ -64,6 +63,9 @@ public class AircraftController {
     public ResponseEntity<AircraftDto> update(@PathVariable String aircraftId,
                                               @RequestBody final AircraftDto aircraftDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + aircraftId + aircraftDto.toString());
+        if (Long.parseLong(aircraftId) != (long)aircraftDto.getId()) {
+            throw new AirfleetIncorrectIdApiRequestException("Path id and inner DTO id should not differ.");
+        }
         final Aircraft aircraft = aircraftDtoMapper.aircraftDtoToAircraft(aircraftDto);
         if (!aircraftService.isPresent(aircraft)) {
             final ResponseEntity<AircraftDto> responseEntity = new ResponseEntity<> (

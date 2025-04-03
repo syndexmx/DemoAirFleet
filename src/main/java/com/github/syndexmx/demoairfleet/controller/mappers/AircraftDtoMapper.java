@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.controller.mappers;
 
-
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 
 @Component
 public class AircraftDtoMapper {

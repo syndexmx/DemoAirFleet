@@ -1,12 +1,10 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
-
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import com.github.syndexmx.demoairfleet.repository.entities.AircraftEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class AircraftEntityMapper {

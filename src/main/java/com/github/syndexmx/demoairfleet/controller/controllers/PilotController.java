@@ -1,9 +1,9 @@
 package com.github.syndexmx.demoairfleet.controller.controllers;
 
-
 import com.github.syndexmx.demoairfleet.controller.mappers.PilotDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.controller.dtos.PilotDto;
+import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectIdApiRequestException;
 import com.github.syndexmx.demoairfleet.services.PilotService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @Slf4j
@@ -64,6 +63,9 @@ public class PilotController {
     public ResponseEntity<PilotDto> update(@PathVariable String pilotId,
                                            @RequestBody final PilotDto pilotDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + pilotId + pilotDto.toString());
+        if (!pilotId.equals(pilotDto.getId())) {
+            throw new AirfleetIncorrectIdApiRequestException("Path id and inner DTO id should not differ.");
+        }
         final Pilot pilot = pilotDtoMapper.pilotDtoToPilot(pilotDto);
         if (!pilotService.isPresent(pilot)) {
             final ResponseEntity<PilotDto> responseEntity = new ResponseEntity<> (

@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.domain;
 
-
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

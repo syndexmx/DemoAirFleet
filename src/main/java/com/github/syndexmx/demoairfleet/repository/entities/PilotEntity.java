@@ -1,7 +1,5 @@
 package com.github.syndexmx.demoairfleet.repository.entities;
 
-
-import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
 
 @Entity
 @AllArgsConstructor

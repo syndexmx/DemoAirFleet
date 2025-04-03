@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.controller.mappers;
 
-
 import com.github.syndexmx.demoairfleet.controller.dtos.PilotDto;
 import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.UUID;
-
 
 @Component
 public class PilotDtoMapper {

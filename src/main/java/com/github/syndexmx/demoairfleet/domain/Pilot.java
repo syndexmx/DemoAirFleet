@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.domain;
 
-
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import lombok.AllArgsConstructor;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
 
 @AllArgsConstructor
 @NoArgsConstructor

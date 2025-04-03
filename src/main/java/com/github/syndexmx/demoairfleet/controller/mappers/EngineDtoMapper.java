@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.controller.mappers;
 
-
 import com.github.syndexmx.demoairfleet.controller.dtos.EngineDto;
 import com.github.syndexmx.demoairfleet.domain.enums.EngineType;
 import com.github.syndexmx.demoairfleet.domain.Engine;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
 
 @Component
 public class EngineDtoMapper {

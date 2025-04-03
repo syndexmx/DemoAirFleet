@@ -1,12 +1,10 @@
 package com.github.syndexmx.demoairfleet.services;
 
-
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public interface AircraftService {

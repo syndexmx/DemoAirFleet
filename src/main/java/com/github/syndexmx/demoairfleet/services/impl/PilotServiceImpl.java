@@ -1,6 +1,5 @@
 package com.github.syndexmx.demoairfleet.services.impl;
 
-
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.repository.entities.PilotEntity;
 import com.github.syndexmx.demoairfleet.repository.mappers.PilotEntityMapper;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 
 @Service
 @Slf4j

@@ -1,12 +1,10 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
-
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.repository.entities.PilotEntity;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class PilotEntityMapper {
