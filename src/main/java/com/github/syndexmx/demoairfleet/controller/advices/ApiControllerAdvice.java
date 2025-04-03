@@ -1,6 +1,6 @@
 package com.github.syndexmx.demoairfleet.controller.advices;
 
-import com.github.syndexmx.demoairfleet.exceptions.AirfleetIncorrectApiRequestException;
+import com.github.syndexmx.demoairfleet.controller.exceptions.AirfleetIncorrectApiRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
