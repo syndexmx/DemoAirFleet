@@ -10,7 +10,7 @@ public class EngineTestSupplierKit {
     private static UUID id = UUID.randomUUID();
 
     private static EngineType GENERIC_FIELD_VALUE = EngineType.DEFAULTVALUE;
-    private static EngineType GENERIC_STRING_MODIFIED = EngineType.ALTERNATIVEVALUE;
+    private static EngineType GENERIC_STRING_MODIFIED = EngineType.ROLLSROYCE_TRENT_877;
 
     public static Engine getTestengine() {
         return Engine.builder()
@@ -27,7 +27,7 @@ public class EngineTestSupplierKit {
     }
 
     private static UUID NON_EXISTENT_UUID = UUID.randomUUID();
-    private static EngineType NON_EXISTANT_VALUE = EngineType.OTHERVALUE;
+    private static EngineType NON_EXISTANT_VALUE = EngineType.CFM56_7;
 
     public static Engine getTestNonExistentengine( ) {
         return Engine.builder()

@@ -10,7 +10,7 @@ public class AircraftTestSupplierKit {
     private static UUID id = UUID.randomUUID();
 
     private static AircraftType GENERIC_FIELD_VALUE = AircraftType.DEFAULTVALUE;
-    private static AircraftType GENERIC_STRING_MODIFIED = AircraftType.ALTERNATIVEVALUE;
+    private static AircraftType GENERIC_STRING_MODIFIED = AircraftType.BOEING_737_600;
 
     public static Aircraft getTestAircraft() {
         return Aircraft.builder()
@@ -27,7 +27,7 @@ public class AircraftTestSupplierKit {
     }
 
     private static UUID NON_EXISTENT_UUID = UUID.randomUUID();
-    private static AircraftType NON_EXISTANT_VALUE = AircraftType.OTHERVALUE;
+    private static AircraftType NON_EXISTANT_VALUE = AircraftType.BOEING_737_MAX_7;
 
     public static Aircraft getTestNonExistentAircraft( ) {
         return Aircraft.builder()
