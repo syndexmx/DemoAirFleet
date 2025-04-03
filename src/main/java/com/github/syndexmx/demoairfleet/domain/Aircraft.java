@@ -23,7 +23,7 @@ public class Aircraft {
     private Integer pax;
     private Integer engineCount;
     private Integer hoursInFlight;
-    private LocalDate startService;
+    private LocalDate startOperation;
     private LocalDate lastInspection;
 
 }

@@ -21,7 +21,7 @@ public class AircraftDto {
     private Integer pax;
     private Integer engineCount;
     private Integer hoursInFlight;
-    private String startService;
+    private String startOperation;
     private String lastInspection;
 
 }

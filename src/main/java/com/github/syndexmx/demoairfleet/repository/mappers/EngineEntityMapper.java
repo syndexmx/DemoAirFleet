@@ -13,7 +13,11 @@ public class EngineEntityMapper {
     public EngineEntity engineToengineEntity(Engine engine) {
         final EngineEntity engineEntity = EngineEntity.builder()
                 .engineId(engine.getId())
-                .engineFieldContent(engine.getEngineType().toString())
+                .engineType(engine.getEngineType().toString())
+                .lastInspection(engine.getLastInspection())
+                .startOperation(engine.getStartOperation())
+                .hoursInFlight(engine.getHoursInFlight())
+                .serialNumber(engine.getSerialNumber())
                 .build();
         return engineEntity;
     }
@@ -21,7 +25,11 @@ public class EngineEntityMapper {
     public Engine engineEntityToengine(EngineEntity engineEntity) {
         Engine engine = Engine.builder()
                 .id(engineEntity.getEngineId())
-                .engineType(EngineType.valueOf(engineEntity.getEngineFieldContent()))
+                .engineType(EngineType.valueOf(engineEntity.getEngineType()))
+                .lastInspection(engineEntity.getLastInspection())
+                .startOperation(engineEntity.getStartOperation())
+                .hoursInFlight(engineEntity.getHoursInFlight())
+                .serialNumber(engineEntity.getSerialNumber())
                 .build();
         return engine;
     }

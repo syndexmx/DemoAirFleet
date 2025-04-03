@@ -32,7 +32,7 @@ public class EngineController {
     public ResponseEntity<EngineDto> create(@RequestBody final EngineDto engineDto) {
         final Engine engine = engineDtoMapper.engineDtoNoIdToengine(engineDto);
         final ResponseEntity<EngineDto> responseEntity = new ResponseEntity<> (
-                engineDtoMapper.engineToengineDto(engineService.create(engine)), HttpStatus.CREATED);
+                engineDtoMapper.engineToEngineDto(engineService.create(engine)), HttpStatus.CREATED);
         return responseEntity;
     }
 
@@ -42,7 +42,7 @@ public class EngineController {
         if (foundengine.isEmpty()) {
             return new ResponseEntity<EngineDto>(HttpStatus.NOT_FOUND);
         } else {
-            final EngineDto engineDto = engineDtoMapper.engineToengineDto(foundengine.get());
+            final EngineDto engineDto = engineDtoMapper.engineToEngineDto(foundengine.get());
             return new ResponseEntity<EngineDto>(engineDto, HttpStatus.FOUND);
         }
     }
@@ -51,7 +51,7 @@ public class EngineController {
     public ResponseEntity<List<EngineDto>> retrieveAll() {
         final List<Engine> listFound = engineService.listAll();
         final List<EngineDto> listFoundDtos = listFound.stream()
-                .map(engine -> engineDtoMapper.engineToengineDto(engine)).toList();
+                .map(engine -> engineDtoMapper.engineToEngineDto(engine)).toList();
         final ResponseEntity<List<EngineDto>> response = new ResponseEntity<>(listFoundDtos,
                 HttpStatus.OK);
         return response;
@@ -59,14 +59,14 @@ public class EngineController {
 
     @PutMapping(ROOT_API_PATH +"/{engineId}")
     public ResponseEntity<EngineDto> update(@RequestBody final EngineDto engineDto) {
-        final Engine engine = engineDtoMapper.engineDtoToengine(engineDto);
+        final Engine engine = engineDtoMapper.engineDtoToEngine(engineDto);
         if (!engineService.isPresent(engine)) {
             final ResponseEntity<EngineDto> responseEntity = new ResponseEntity<> (
-                    engineDtoMapper.engineToengineDto(engineService.save(engine)), HttpStatus.CREATED);
+                    engineDtoMapper.engineToEngineDto(engineService.save(engine)), HttpStatus.CREATED);
             return responseEntity;
         }
         final ResponseEntity<EngineDto> responseEntity = new ResponseEntity<> (
-                engineDtoMapper.engineToengineDto(engineService.save(engine)), HttpStatus.OK);
+                engineDtoMapper.engineToEngineDto(engineService.save(engine)), HttpStatus.OK);
         return responseEntity;
     }
 

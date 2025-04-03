@@ -2,6 +2,7 @@ package com.github.syndexmx.demoairfleet.domain;
 
 
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 
@@ -16,6 +17,10 @@ public class EngineTestSupplierKit {
         return Engine.builder()
                 .id(id)
                 .engineType(GENERIC_FIELD_VALUE)
+                .lastInspection(LocalDate.parse("2025-01-01"))
+                .startOperation(LocalDate.parse("2020-02-02"))
+                .hoursInFlight(3999)
+                .serialNumber("58830443")
                 .build();
     }
 
@@ -23,6 +28,10 @@ public class EngineTestSupplierKit {
         return Engine.builder()
                 .id(id)
                 .engineType(GENERIC_STRING_MODIFIED)
+                .lastInspection(LocalDate.parse("2024-11-21"))
+                .startOperation(LocalDate.parse("2019-02-02"))
+                .hoursInFlight(1788)
+                .serialNumber("8777583")
                 .build();
     }
 

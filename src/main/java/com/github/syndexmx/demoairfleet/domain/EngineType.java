@@ -14,9 +14,9 @@ public enum EngineType {
     ROLLSROYCE_TRENT_892 ("Rolls-Royce Trent 892"),
     GE_GE90 ("General Electric GE90");
 
-    private String name;
+    private String typeName;
 
-    EngineType(String name) {
-        this.name = name;
+    EngineType(String typeName) {
+        this.typeName = typeName;
     }
 }

@@ -46,7 +46,7 @@ public class EngineControllerIT {
     @Test
     public void testThatengineIsCreated() throws Exception {
         Engine engine = EngineTestSupplierKit.getTestengine();
-        final EngineDto engineDto = engineDtoMapper.engineToengineDto(engine);
+        final EngineDto engineDto = engineDtoMapper.engineToEngineDto(engine);
         final ObjectMapper objectMapper = new ObjectMapper();
         final String engineJson = objectMapper.writeValueAsString(engineDto);
         mockMvc.perform(MockMvcRequestBuilders.post(ROOT_API_PATH)
@@ -68,7 +68,7 @@ public class EngineControllerIT {
         final UUID id = savedengine.getId();
         Engine modifiedEngine = EngineTestSupplierKit.getModifiedTestengine();
         modifiedEngine.setId(id);
-        final EngineDto modifiedengineDto = engineDtoMapper.engineToengineDto(modifiedEngine);
+        final EngineDto modifiedengineDto = engineDtoMapper.engineToEngineDto(modifiedEngine);
         final ObjectMapper modifiedObjectMapper = new ObjectMapper();
         final String modifiedengineJson = modifiedObjectMapper.writeValueAsString(modifiedengineDto);
         mockMvc.perform(MockMvcRequestBuilders.put(ROOT_API_PATH + "/" + id.toString())
@@ -91,7 +91,7 @@ public class EngineControllerIT {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         final Engine engineSaved = engineService.create(engine);
         final UUID id = engineSaved.getId();
-        final EngineDto engineDto = engineDtoMapper.engineToengineDto(engineSaved);
+        final EngineDto engineDto = engineDtoMapper.engineToEngineDto(engineSaved);
         final ObjectMapper objectMapper = new ObjectMapper();
         final String engineJson = objectMapper.writeValueAsString(engineDto);
         mockMvc.perform(MockMvcRequestBuilders.get(ROOT_API_PATH + "/" + id.toString()))
@@ -110,7 +110,7 @@ public class EngineControllerIT {
     public void testThatRetrieveAllReturnsListWhenExist() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         final Engine engineSaved = engineService.create(engine);
-        final EngineDto engineDto = engineDtoMapper.engineToengineDto(engineSaved);
+        final EngineDto engineDto = engineDtoMapper.engineToEngineDto(engineSaved);
         final List<EngineDto> listengineDto = new ArrayList<>(List.of(engineDto));
         final ObjectMapper objectMapper = new ObjectMapper();
         final String engineListJson = objectMapper.writeValueAsString(listengineDto);
