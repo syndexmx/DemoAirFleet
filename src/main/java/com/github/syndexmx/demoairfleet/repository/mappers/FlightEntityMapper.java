@@ -1,7 +1,7 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
 
-import com.github.syndexmx.demoairfleet.domain.FlightData;
+import com.github.syndexmx.demoairfleet.domain.enums.FlightData;
 import com.github.syndexmx.demoairfleet.domain.Flight;
 import com.github.syndexmx.demoairfleet.repository.entities.FlightEntity;
 import org.springframework.stereotype.Component;

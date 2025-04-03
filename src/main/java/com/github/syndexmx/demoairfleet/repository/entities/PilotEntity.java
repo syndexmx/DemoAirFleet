@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 
@@ -20,8 +21,12 @@ public class PilotEntity {
 
     @Id
     private UUID pilotId;
-
-    private String pilotFieldContent;
+    private String firstName;
+    private String secondName;
+    private String lastName;
+    private LocalDate birthDate;
+    private Integer hoursInFlight;
+    private String sex;
 
 
 }

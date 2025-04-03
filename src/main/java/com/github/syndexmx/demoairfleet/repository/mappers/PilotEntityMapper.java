@@ -1,7 +1,7 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
 
-import com.github.syndexmx.demoairfleet.domain.PilotField;
+import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.repository.entities.PilotEntity;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,12 @@ public class PilotEntityMapper {
     public PilotEntity pilotToPilotEntity(Pilot pilot) {
         final PilotEntity pilotEntity = PilotEntity.builder()
                 .pilotId(pilot.getId())
-                .pilotFieldContent(pilot.getPilotField().toString())
+                .sex(pilot.getSex().toString())
+                .firstName(pilot.getFirstName())
+                .secondName(pilot.getSecondName())
+                .lastName(pilot.getLastName())
+                .birthDate(pilot.getBirthDate())
+                .hoursInFlight(pilot.getHoursInFlight())
                 .build();
         return pilotEntity;
     }
@@ -21,7 +26,12 @@ public class PilotEntityMapper {
     public Pilot pilotEntityToPilot(PilotEntity pilotEntity) {
         Pilot pilot = Pilot.builder()
                 .id(pilotEntity.getPilotId())
-                .pilotField(PilotField.valueOf(pilotEntity.getPilotFieldContent()))
+                .sex(Sex.valueOf(pilotEntity.getSex()))
+                .firstName(pilotEntity.getFirstName())
+                .secondName(pilotEntity.getSecondName())
+                .lastName(pilotEntity.getLastName())
+                .birthDate(pilotEntity.getBirthDate())
+                .hoursInFlight(pilotEntity.getHoursInFlight())
                 .build();
         return pilot;
     }

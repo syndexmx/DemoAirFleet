@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.domain;
+package com.github.syndexmx.demoairfleet.domain.enums;
 
 
 

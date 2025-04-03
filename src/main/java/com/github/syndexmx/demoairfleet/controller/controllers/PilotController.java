@@ -5,6 +5,7 @@ import com.github.syndexmx.demoairfleet.controller.mappers.PilotDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.controller.dtos.PilotDto;
 import com.github.syndexmx.demoairfleet.services.PilotService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 
 @RestController
+@Slf4j
 public class PilotController {
 
     private final String ROOT_API_PATH = "/api/v0/pilots";
@@ -30,6 +32,7 @@ public class PilotController {
 
     @PostMapping(ROOT_API_PATH)
     public ResponseEntity<PilotDto> create(@RequestBody final PilotDto pilotDto) {
+        log.info("POST " + ROOT_API_PATH + " " + pilotDto.toString());
         final Pilot pilot = pilotDtoMapper.pilotDtoNoIdToPilot(pilotDto);
         final ResponseEntity<PilotDto> responseEntity = new ResponseEntity<> (
                 pilotDtoMapper.pilotToPilotDto(pilotService.create(pilot)), HttpStatus.CREATED);
@@ -58,7 +61,9 @@ public class PilotController {
     }
 
     @PutMapping(ROOT_API_PATH +"/{pilotId}")
-    public ResponseEntity<PilotDto> update(@RequestBody final PilotDto pilotDto) {
+    public ResponseEntity<PilotDto> update(@PathVariable String pilotId,
+                                           @RequestBody final PilotDto pilotDto) {
+        log.info("PUT " + ROOT_API_PATH + "/" + pilotId + pilotDto.toString());
         final Pilot pilot = pilotDtoMapper.pilotDtoToPilot(pilotDto);
         if (!pilotService.isPresent(pilot)) {
             final ResponseEntity<PilotDto> responseEntity = new ResponseEntity<> (
@@ -72,6 +77,7 @@ public class PilotController {
 
     @DeleteMapping(ROOT_API_PATH +"/{pilotId}")
     public ResponseEntity deleteById(@PathVariable String pilotId) {
+        log.info("DELETE " + ROOT_API_PATH + "/" + pilotId);
         pilotService.deleteById(pilotId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

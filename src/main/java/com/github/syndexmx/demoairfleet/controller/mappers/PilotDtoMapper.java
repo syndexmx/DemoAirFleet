@@ -2,10 +2,11 @@ package com.github.syndexmx.demoairfleet.controller.mappers;
 
 
 import com.github.syndexmx.demoairfleet.controller.dtos.PilotDto;
-import com.github.syndexmx.demoairfleet.domain.PilotField;
+import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 
@@ -15,7 +16,12 @@ public class PilotDtoMapper {
     public PilotDto pilotToPilotDto(Pilot pilot) {
         final PilotDto pilotDto = PilotDto.builder()
                 .id(pilot.getId().toString())
-                .pilotFieldContent(pilot.getPilotField().toString())
+                .sex(pilot.getSex().toString())
+                .firstName(pilot.getFirstName())
+                .secondName(pilot.getSecondName())
+                .lastName(pilot.getLastName())
+                .birthDate(pilot.getBirthDate().toString())
+                .hoursInFlight(pilot.getHoursInFlight())
                 .build();
         return pilotDto;
     }
@@ -23,7 +29,12 @@ public class PilotDtoMapper {
     public Pilot pilotDtoToPilot(PilotDto pilotDto) {
         Pilot pilot = Pilot.builder()
                 .id(UUID.fromString(pilotDto.getId()))
-                .pilotField(PilotField.valueOf(pilotDto.getPilotFieldContent()))
+                .sex(Sex.valueOf(pilotDto.getSex()))
+                .firstName(pilotDto.getFirstName())
+                .secondName(pilotDto.getSecondName())
+                .lastName(pilotDto.getLastName())
+                .birthDate(LocalDate.parse(pilotDto.getBirthDate()))
+                .hoursInFlight(pilotDto.getHoursInFlight())
                 .build();
         return pilot;
     }
@@ -31,7 +42,12 @@ public class PilotDtoMapper {
     public Pilot pilotDtoNoIdToPilot(PilotDto pilotDto) {
         Pilot pilot = Pilot.builder()
                 .id(UUID.randomUUID())
-                .pilotField(PilotField.valueOf(pilotDto.getPilotFieldContent()))
+                .sex(Sex.valueOf(pilotDto.getSex()))
+                .firstName(pilotDto.getFirstName())
+                .secondName(pilotDto.getSecondName())
+                .lastName(pilotDto.getLastName())
+                .birthDate(LocalDate.parse(pilotDto.getBirthDate()))
+                .hoursInFlight(pilotDto.getHoursInFlight())
                 .build();
         return pilot;
     }

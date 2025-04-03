@@ -14,7 +14,11 @@ import lombok.NoArgsConstructor;
 public class PilotDto {
 
     private String id;
-
-    private String pilotFieldContent;
+    private String firstName;
+    private String secondName;
+    private String lastName;
+    private String birthDate;
+    private Integer hoursInFlight;
+    private String sex;
 
 }

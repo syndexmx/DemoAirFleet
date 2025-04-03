@@ -1,7 +1,7 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
 
-import com.github.syndexmx.demoairfleet.domain.EngineType;
+import com.github.syndexmx.demoairfleet.domain.enums.EngineType;
 import com.github.syndexmx.demoairfleet.domain.Engine;
 import com.github.syndexmx.demoairfleet.repository.entities.EngineEntity;
 import org.springframework.stereotype.Component;

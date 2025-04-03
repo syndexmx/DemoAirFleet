@@ -2,6 +2,8 @@ package com.github.syndexmx.demoairfleet.domain;
 
 
 
+import com.github.syndexmx.demoairfleet.domain.enums.FlightData;
+
 import java.util.UUID;
 
 

@@ -2,7 +2,7 @@ package com.github.syndexmx.demoairfleet.controller.mappers;
 
 
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
-import com.github.syndexmx.demoairfleet.domain.AircraftType;
+import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import org.springframework.stereotype.Component;
 
