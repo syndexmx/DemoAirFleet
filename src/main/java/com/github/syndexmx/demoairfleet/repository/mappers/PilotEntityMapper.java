@@ -11,7 +11,7 @@ public class PilotEntityMapper {
 
     public PilotEntity pilotToPilotEntity(Pilot pilot) {
         final PilotEntity pilotEntity = PilotEntity.builder()
-                .pilotId(pilot.getId())
+                .id(pilot.getId())
                 .sex(pilot.getSex().toString())
                 .firstName(pilot.getFirstName())
                 .secondName(pilot.getSecondName())
@@ -27,7 +27,7 @@ public class PilotEntityMapper {
 
     public Pilot pilotEntityToPilot(PilotEntity pilotEntity) {
         Pilot pilot = Pilot.builder()
-                .id(pilotEntity.getPilotId())
+                .id(pilotEntity.getId())
                 .sex(Sex.valueOf(pilotEntity.getSex()))
                 .firstName(pilotEntity.getFirstName())
                 .secondName(pilotEntity.getSecondName())

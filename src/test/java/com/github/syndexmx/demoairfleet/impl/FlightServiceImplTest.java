@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,12 @@ public class FlightServiceImplTest {
     @InjectMocks
     private FlightServiceImpl underTest;
 
+    @Autowired
+    FlightEntityMapper flightEntityMapper; // TODO: Make it work
+
     @Test
     public void testThatFlightIsCreated() {
         Flight flight = FlightTestSupplierKit.getTestFlight();
-        FlightEntityMapper flightEntityMapper = new FlightEntityMapper(); // TO DO: make it work
         FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
         when(flightRepository.save(any())).thenReturn(flightEntity);
         final Flight savedFlight = underTest.create(flight);
@@ -47,7 +50,6 @@ public class FlightServiceImplTest {
     @Test
     public void testThatFlightIsSaved() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        FlightEntityMapper flightEntityMapper = new FlightEntityMapper(); // TO DO: make it work
         final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
         when(flightRepository.save(eq(flightEntity))).thenReturn(flightEntity);
         final Flight savedFlight = underTest.save(flight);
@@ -66,7 +68,6 @@ public class FlightServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEntityWhenPresent() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        FlightEntityMapper flightEntityMapper = new FlightEntityMapper(); // TO DO: make it work
         final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
         final String idString = flight.getId().toString();
         when(flightRepository.findById(eq(UUID.fromString(idString)))).thenReturn(Optional.of(flightEntity));
@@ -84,7 +85,6 @@ public class FlightServiceImplTest {
     @Test
     public void testListFlightsReturnsListWhenExist() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        FlightEntityMapper flightEntityMapper = new FlightEntityMapper(); // TO DO: make it work
         final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
         List<FlightEntity> listOfExisting = new ArrayList<>(List.of(flightEntity));
         when(flightRepository.findAll()).thenReturn(listOfExisting);

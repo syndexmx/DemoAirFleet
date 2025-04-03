@@ -20,5 +20,6 @@ public class Flight {
     private String callsign;
     private Integer pax;
     private LocalDate date;
-
+    private Pilot captain;
+    private Pilot firstOfficer;
 }

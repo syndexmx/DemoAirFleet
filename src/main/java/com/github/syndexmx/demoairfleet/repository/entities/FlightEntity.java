@@ -18,12 +18,18 @@ import java.util.UUID;
 public class FlightEntity {
 
     @Id
-    private UUID flightId;
+    private UUID id;
     private String name;
     private String route;
     private String callsign;
     private Integer pax;
     private LocalDate date;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private PilotEntity captain;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private PilotEntity firstOfficer;
 
 
 }

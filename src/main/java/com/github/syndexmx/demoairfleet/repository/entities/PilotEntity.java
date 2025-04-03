@@ -19,7 +19,7 @@ import java.util.UUID;
 public class PilotEntity {
 
     @Id
-    private UUID pilotId;
+    private UUID id;
     private String firstName;
     private String secondName;
     private String lastName;
