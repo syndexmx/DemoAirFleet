@@ -2,9 +2,11 @@ package com.github.syndexmx.demoairfleet.domain;
 
 
 
+import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -24,6 +26,7 @@ public class PilotTestSupplierKit {
                 .lastName("Maddison")
                 .birthDate(LocalDate.parse("1973-02-06"))
                 .hoursInFlight(17873)
+                .certifiedAircraftTypes(List.of(AircraftType.BOEING_737_NG))
                 .build();
     }
 
@@ -36,6 +39,7 @@ public class PilotTestSupplierKit {
                 .lastName("Smith")
                 .birthDate(LocalDate.parse("1983-04-16"))
                 .hoursInFlight(9873)
+                .certifiedAircraftTypes(List.of(AircraftType.BOEING_737_NG))
                 .build();
     }
 

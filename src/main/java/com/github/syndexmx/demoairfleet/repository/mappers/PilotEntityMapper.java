@@ -1,6 +1,7 @@
 package com.github.syndexmx.demoairfleet.repository.mappers;
 
 
+import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.enums.Sex;
 import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.repository.entities.PilotEntity;
@@ -19,6 +20,9 @@ public class PilotEntityMapper {
                 .lastName(pilot.getLastName())
                 .birthDate(pilot.getBirthDate())
                 .hoursInFlight(pilot.getHoursInFlight())
+                .certifiedAircraftTypes(pilot.getCertifiedAircraftTypes().stream()
+                        .map(aircraftTypeName -> aircraftTypeName.toString())
+                        .toList())
                 .build();
         return pilotEntity;
     }
@@ -32,6 +36,10 @@ public class PilotEntityMapper {
                 .lastName(pilotEntity.getLastName())
                 .birthDate(pilotEntity.getBirthDate())
                 .hoursInFlight(pilotEntity.getHoursInFlight())
+                .certifiedAircraftTypes(pilotEntity.getCertifiedAircraftTypes().stream()
+                        .map(aircraftTypeName ->
+                                AircraftType.valueOf(aircraftTypeName))
+                        .toList())
                 .build();
         return pilot;
     }

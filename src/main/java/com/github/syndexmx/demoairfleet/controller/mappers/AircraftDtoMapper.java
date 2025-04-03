@@ -4,6 +4,7 @@ package com.github.syndexmx.demoairfleet.controller.mappers;
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
 import com.github.syndexmx.demoairfleet.domain.enums.AircraftType;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,6 +24,9 @@ public class AircraftDtoMapper {
         }
     }
 
+    public AircraftType getTypeByName(String name) {
+        return typeNameToTypeType.get(name);
+    };
 
     public AircraftDto aircraftToAircraftDto(Aircraft aircraft) {
         final AircraftDto aircraftDto = AircraftDto.builder()

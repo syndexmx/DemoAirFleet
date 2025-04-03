@@ -1,10 +1,13 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
 
+import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -20,5 +23,6 @@ public class PilotDto {
     private String birthDate;
     private Integer hoursInFlight;
     private String sex;
+    private List<String> certifiedAircraftTypes;
 
 }
