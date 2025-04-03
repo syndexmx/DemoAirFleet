@@ -5,6 +5,7 @@ import com.github.syndexmx.demoairfleet.controller.mappers.AircraftDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
 import com.github.syndexmx.demoairfleet.services.AircraftService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 
 @RestController
+@Slf4j
 public class AircraftController {
 
     private final String ROOT_API_PATH = "/api/v0/aircrafts";
@@ -30,6 +32,7 @@ public class AircraftController {
 
     @PostMapping(ROOT_API_PATH)
     public ResponseEntity<AircraftDto> create(@RequestBody final AircraftDto aircraftDto) {
+        log.info("POST " + ROOT_API_PATH + " " + aircraftDto.toString());
         final Aircraft aircraft = aircraftDtoMapper.aircraftDtoNoIdToAircraft(aircraftDto);
         final ResponseEntity<AircraftDto> responseEntity = new ResponseEntity<> (
                 aircraftDtoMapper.aircraftToAircraftDto(aircraftService.create(aircraft)), HttpStatus.CREATED);
@@ -58,7 +61,9 @@ public class AircraftController {
     }
 
     @PutMapping(ROOT_API_PATH +"/{aircraftId}")
-    public ResponseEntity<AircraftDto> update(@RequestBody final AircraftDto aircraftDto) {
+    public ResponseEntity<AircraftDto> update(@PathVariable String aircraftId,
+                                              @RequestBody final AircraftDto aircraftDto) {
+        log.info("PUT " + ROOT_API_PATH + "/" + aircraftId + aircraftDto.toString());
         final Aircraft aircraft = aircraftDtoMapper.aircraftDtoToAircraft(aircraftDto);
         if (!aircraftService.isPresent(aircraft)) {
             final ResponseEntity<AircraftDto> responseEntity = new ResponseEntity<> (
@@ -72,6 +77,7 @@ public class AircraftController {
 
     @DeleteMapping(ROOT_API_PATH +"/{aircraftId}")
     public ResponseEntity deleteById(@PathVariable String aircraftId) {
+        log.info("DELETE " + ROOT_API_PATH + "/" + aircraftId);
         aircraftService.deleteById(aircraftId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

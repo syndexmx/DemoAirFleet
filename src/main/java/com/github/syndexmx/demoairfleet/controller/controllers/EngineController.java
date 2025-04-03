@@ -5,6 +5,7 @@ import com.github.syndexmx.demoairfleet.controller.mappers.EngineDtoMapper;
 import com.github.syndexmx.demoairfleet.domain.Engine;
 import com.github.syndexmx.demoairfleet.controller.dtos.EngineDto;
 import com.github.syndexmx.demoairfleet.services.EngineService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 
 @RestController
+@Slf4j
 public class EngineController {
 
     private final String ROOT_API_PATH = "/api/v0/engines";
@@ -30,6 +32,7 @@ public class EngineController {
 
     @PostMapping(ROOT_API_PATH)
     public ResponseEntity<EngineDto> create(@RequestBody final EngineDto engineDto) {
+        log.info("POST " + ROOT_API_PATH + " " + engineDto.toString());
         final Engine engine = engineDtoMapper.engineDtoNoIdToengine(engineDto);
         final ResponseEntity<EngineDto> responseEntity = new ResponseEntity<> (
                 engineDtoMapper.engineToEngineDto(engineService.create(engine)), HttpStatus.CREATED);
@@ -58,7 +61,9 @@ public class EngineController {
     }
 
     @PutMapping(ROOT_API_PATH +"/{engineId}")
-    public ResponseEntity<EngineDto> update(@RequestBody final EngineDto engineDto) {
+    public ResponseEntity<EngineDto> update(@PathVariable String engineId,
+                                            @RequestBody final EngineDto engineDto) {
+        log.info("PUT " + ROOT_API_PATH + "/" + engineId + engineDto.toString());
         final Engine engine = engineDtoMapper.engineDtoToEngine(engineDto);
         if (!engineService.isPresent(engine)) {
             final ResponseEntity<EngineDto> responseEntity = new ResponseEntity<> (
@@ -72,6 +77,7 @@ public class EngineController {
 
     @DeleteMapping(ROOT_API_PATH +"/{engineId}")
     public ResponseEntity deleteById(@PathVariable String engineId) {
+        log.info("DELETE " + ROOT_API_PATH + "/" + engineId);
         engineService.deleteById(engineId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
