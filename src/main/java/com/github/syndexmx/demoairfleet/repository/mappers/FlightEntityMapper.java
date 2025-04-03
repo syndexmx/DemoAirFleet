@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 public class FlightEntityMapper {
 
     private PilotEntityMapper pilotEntityMapper;
+    private AircraftEntityMapper aircraftEntityMapper;
 
     @Autowired
-    public FlightEntityMapper(PilotEntityMapper pilotEntityMapper) {
+    public FlightEntityMapper(PilotEntityMapper pilotEntityMapper, AircraftEntityMapper aircraftEntityMapper) {
         this.pilotEntityMapper = pilotEntityMapper;
+        this.aircraftEntityMapper = aircraftEntityMapper;
     }
 
     public FlightEntity flightToFlightEntity(Flight flight) {
@@ -23,6 +25,7 @@ public class FlightEntityMapper {
                 .pax(flight.getPax())
                 .callsign(flight.getCallsign())
                 .date(flight.getDate())
+                .aircraft(aircraftEntityMapper.aircraftToAircraftEntity(flight.getAircraft()))
                 .captain(pilotEntityMapper.pilotToPilotEntity(flight.getCaptain()))
                 .firstOfficer(pilotEntityMapper.pilotToPilotEntity(flight.getFirstOfficer()))
                 .build();
@@ -37,6 +40,7 @@ public class FlightEntityMapper {
                 .pax(flightEntity.getPax())
                 .callsign(flightEntity.getCallsign())
                 .date(flightEntity.getDate())
+                .aircraft(aircraftEntityMapper.aircraftEntityToAircraft(flightEntity.getAircraft()))
                 .captain(pilotEntityMapper.pilotEntityToPilot(flightEntity.getCaptain()))
                 .firstOfficer(pilotEntityMapper.pilotEntityToPilot(flightEntity.getFirstOfficer()))
                 .build();

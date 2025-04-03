@@ -1,5 +1,6 @@
 package com.github.syndexmx.demoairfleet.repository.entities;
 
+import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,9 @@ public class FlightEntity {
     private String callsign;
     private Integer pax;
     private LocalDate date;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private AircraftEntity aircraft;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     private PilotEntity captain;

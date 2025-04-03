@@ -1,5 +1,6 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
+import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class FlightDto {
     private String callsign;
     private Integer pax;
     private String date;
+    private AircraftDto aircraft;
     private PilotDto captain;
     private PilotDto firstOfficer;
 
