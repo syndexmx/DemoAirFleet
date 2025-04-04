@@ -1,6 +1,7 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
+@Schema(name = "Flight",
+        description = "Полёт")
 public class FlightDto {
 
     private String id;

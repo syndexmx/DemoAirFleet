@@ -1,5 +1,6 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
+@Schema(name = "Engine",
+        description = "Двигатель")
 public class EngineDto {
 
     private Long id;

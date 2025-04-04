@@ -12,6 +12,7 @@ import com.github.syndexmx.demoairfleet.services.AircraftService;
 import com.github.syndexmx.demoairfleet.services.EngineService;
 import com.github.syndexmx.demoairfleet.services.FlightService;
 import com.github.syndexmx.demoairfleet.services.PilotService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@Tag(name = "Spoof Initializer", description = "API Автоматического пробного заполнения")
 public class SpoofInitializerController {
 
     private final String ROOT_API_PATH = "/api/v0/initializer";

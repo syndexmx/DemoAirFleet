@@ -5,6 +5,8 @@ import com.github.syndexmx.demoairfleet.domain.Pilot;
 import com.github.syndexmx.demoairfleet.controller.dtos.PilotDto;
 import com.github.syndexmx.demoairfleet.controller.exceptions.AirfleetIncorrectApiRequestException;
 import com.github.syndexmx.demoairfleet.services.PilotService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
+@Tag(name = "Pilots", description = "API Пилотов")
 public class PilotController {
 
     private final String ROOT_API_PATH = "/api/v0/pilots";
@@ -30,6 +33,8 @@ public class PilotController {
     }
 
     @PostMapping(ROOT_API_PATH)
+    @Operation(summary = "Add a pilot",
+            description = "Добавление пилота")
     public ResponseEntity<PilotDto> create(@RequestBody final PilotDto pilotDto) {
         log.info("POST " + ROOT_API_PATH + " " + pilotDto.toString());
         final Pilot pilot = pilotDtoMapper.pilotDtoNoIdToPilot(pilotDto);
@@ -39,6 +44,8 @@ public class PilotController {
     }
 
     @GetMapping(ROOT_API_PATH +"/{pilotId}")
+    @Operation(summary = "Get pilot info",
+            description = "Получить данные пилота")
     public ResponseEntity<PilotDto> retrieve(@PathVariable String pilotId) {
         final Optional<Pilot> foundPilot = pilotService.findById(pilotId);
         if (foundPilot.isEmpty()) {
@@ -50,6 +57,8 @@ public class PilotController {
     }
 
     @GetMapping(ROOT_API_PATH)
+    @Operation(summary = "Get pilot list",
+            description = "Получить список пилотов")
     public ResponseEntity<List<PilotDto>> retrieveAll() {
         final List<Pilot> listFound = pilotService.listAll();
         final List<PilotDto> listFoundDtos = listFound.stream()
@@ -60,6 +69,8 @@ public class PilotController {
     }
 
     @PutMapping(ROOT_API_PATH +"/{pilotId}")
+    @Operation(summary = "Update/Correct pilot info",
+            description = "Записать обновленные данные пилота")
     public ResponseEntity<PilotDto> update(@PathVariable String pilotId,
                                            @RequestBody final PilotDto pilotDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + pilotId + pilotDto.toString());
@@ -78,6 +89,8 @@ public class PilotController {
     }
 
     @DeleteMapping(ROOT_API_PATH +"/{pilotId}")
+    @Operation(summary = "Delete a pilot",
+            description = "Удалить данные пилота")
     public ResponseEntity deleteById(@PathVariable String pilotId) {
         log.info("DELETE " + ROOT_API_PATH + "/" + pilotId);
         pilotService.deleteById(pilotId);
