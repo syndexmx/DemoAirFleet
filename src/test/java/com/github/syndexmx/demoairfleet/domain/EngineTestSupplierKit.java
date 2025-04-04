@@ -5,12 +5,11 @@ package com.github.syndexmx.demoairfleet.domain;
 import com.github.syndexmx.demoairfleet.domain.enums.EngineType;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 
 public class EngineTestSupplierKit {
 
-    private static UUID id = UUID.randomUUID();
+    private static Long id = 1L;
 
     private static EngineType GENERIC_FIELD_VALUE = EngineType.DEFAULTVALUE;
     private static EngineType GENERIC_STRING_MODIFIED = EngineType.ROLLSROYCE_TRENT_877;
@@ -37,12 +36,12 @@ public class EngineTestSupplierKit {
                 .build();
     }
 
-    private static UUID NON_EXISTENT_UUID = UUID.randomUUID();
+    private static Long NON_EXISTENT_ID = 2L;
     private static EngineType NON_EXISTANT_VALUE = EngineType.CFM56_7;
 
     public static Engine getTestNonExistentengine( ) {
         return Engine.builder()
-                .id(NON_EXISTENT_UUID)
+                .id(NON_EXISTENT_ID)
                 .engineType(NON_EXISTANT_VALUE)
                 .build();
     }

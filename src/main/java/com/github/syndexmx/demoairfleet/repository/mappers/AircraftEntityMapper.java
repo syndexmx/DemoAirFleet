@@ -9,14 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AircraftEntityMapper {
 
-    private EngineEntityMapper engineEntityMapper;
-
-    @Autowired
-    public AircraftEntityMapper(EngineEntityMapper engineEntityMapper) {
-        this.engineEntityMapper = engineEntityMapper;
-    }
-
-    public AircraftEntity aircraftToAircraftEntity(Aircraft aircraft) {
+    public static AircraftEntity aircraftToAircraftEntity(Aircraft aircraft) {
         final AircraftEntity aircraftEntity = AircraftEntity.builder()
                 .id(aircraft.getId())
                 .aircraftType(aircraft.getAircraftType().toString())
@@ -29,14 +22,14 @@ public class AircraftEntityMapper {
                 .registration(aircraft.getRegistration())
                 .serialNumber(aircraft.getSerialNumber())
                 .engineList(aircraft.getEngineList().stream()
-                        .map(engine -> engineEntityMapper
+                        .map(engine -> EngineEntityMapper
                                 .engineToEngineEntity(engine))
                         .toList())
                 .build();
         return aircraftEntity;
     }
 
-    public Aircraft aircraftEntityToAircraft(AircraftEntity aircraftEntity) {
+    public static Aircraft aircraftEntityToAircraft(AircraftEntity aircraftEntity) {
         Aircraft aircraft = Aircraft.builder()
                 .id(aircraftEntity.getId())
                 .aircraftType(AircraftType.valueOf(aircraftEntity.getAircraftType()))
@@ -49,13 +42,10 @@ public class AircraftEntityMapper {
                 .registration(aircraftEntity.getRegistration())
                 .serialNumber(aircraftEntity.getSerialNumber())
                 .engineList(aircraftEntity.getEngineList().stream()
-                        .map(engineEntity -> engineEntityMapper
+                        .map(engineEntity -> EngineEntityMapper
                                 .engineEntityToEngine(engineEntity))
                         .toList())
                 .build();
         return aircraft;
     }
-
-
-
 }

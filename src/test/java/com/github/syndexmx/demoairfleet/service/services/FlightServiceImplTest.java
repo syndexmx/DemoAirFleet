@@ -1,5 +1,4 @@
-package com.github.syndexmx.demoairfleet.impl;
-
+package com.github.syndexmx.demoairfleet.service.services;
 
 import com.github.syndexmx.demoairfleet.domain.Flight;
 import com.github.syndexmx.demoairfleet.domain.FlightTestSupplierKit;
@@ -24,7 +23,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-
 @ExtendWith(MockitoExtension.class)
 public class FlightServiceImplTest {
 
@@ -34,13 +32,10 @@ public class FlightServiceImplTest {
     @InjectMocks
     private FlightServiceImpl underTest;
 
-    @Autowired
-    FlightEntityMapper flightEntityMapper; // TODO: Make it work
-
     @Test
     public void testThatFlightIsCreated() {
         Flight flight = FlightTestSupplierKit.getTestFlight();
-        FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
+        FlightEntity flightEntity = FlightEntityMapper.flightToFlightEntity(flight);
         when(flightRepository.save(any())).thenReturn(flightEntity);
         final Flight savedFlight = underTest.create(flight);
         flight.setId(savedFlight.getId());
@@ -50,7 +45,7 @@ public class FlightServiceImplTest {
     @Test
     public void testThatFlightIsSaved() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
+        final FlightEntity flightEntity = FlightEntityMapper.flightToFlightEntity(flight);
         when(flightRepository.save(eq(flightEntity))).thenReturn(flightEntity);
         final Flight savedFlight = underTest.save(flight);
         assertEquals(flight, savedFlight);
@@ -68,7 +63,7 @@ public class FlightServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEntityWhenPresent() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
+        final FlightEntity flightEntity = FlightEntityMapper.flightToFlightEntity(flight);
         final String idString = flight.getId().toString();
         when(flightRepository.findById(eq(UUID.fromString(idString)))).thenReturn(Optional.of(flightEntity));
         final Optional<Flight> foundFlight = underTest.findById(idString);
@@ -85,7 +80,7 @@ public class FlightServiceImplTest {
     @Test
     public void testListFlightsReturnsListWhenExist() {
         final Flight flight = FlightTestSupplierKit.getTestFlight();
-        final FlightEntity flightEntity = flightEntityMapper.flightToFlightEntity(flight);
+        final FlightEntity flightEntity = FlightEntityMapper.flightToFlightEntity(flight);
         List<FlightEntity> listOfExisting = new ArrayList<>(List.of(flightEntity));
         when(flightRepository.findAll()).thenReturn(listOfExisting);
         final List<Flight> result = underTest.listAll();

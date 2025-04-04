@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.impl;
+package com.github.syndexmx.demoairfleet.service.services;
 
 
 import com.github.syndexmx.demoairfleet.domain.Engine;
@@ -35,8 +35,7 @@ public class EngineServiceImplTest {
     @Test
     public void testThatengineIsCreated() {
         Engine engine = EngineTestSupplierKit.getTestengine();
-        EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
+        EngineEntity engineEntity = EngineEntityMapper.engineToEngineEntity(engine);
         when(engineRepository.save(any())).thenReturn(engineEntity);
         final Engine savedEngine = underTest.create(engine);
         engine.setId(savedEngine.getId());
@@ -46,8 +45,7 @@ public class EngineServiceImplTest {
     @Test
     public void testThatengineIsSaved() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
+        final EngineEntity engineEntity = EngineEntityMapper.engineToEngineEntity(engine);
         when(engineRepository.save(eq(engineEntity))).thenReturn(engineEntity);
         final Engine savedEngine = underTest.save(engine);
         assertEquals(engine, savedEngine);
@@ -65,8 +63,7 @@ public class EngineServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEntityWhenPresent() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
+        final EngineEntity engineEntity = EngineEntityMapper.engineToEngineEntity(engine);
         final Long id = engine.getId();
         when(engineRepository.findById(eq(id))).thenReturn(Optional.of(engineEntity));
         final Optional<Engine> foundengine = underTest.findById(id);
@@ -83,8 +80,7 @@ public class EngineServiceImplTest {
     @Test
     public void testListenginesReturnsListWhenExist() {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        EngineEntityMapper engineEntityMapper = new EngineEntityMapper(); // TO DO: make it work
-        final EngineEntity engineEntity = engineEntityMapper.engineToEngineEntity(engine);
+        final EngineEntity engineEntity = EngineEntityMapper.engineToEngineEntity(engine);
         List<EngineEntity> listOfExisting = new ArrayList<>(List.of(engineEntity));
         when(engineRepository.findAll()).thenReturn(listOfExisting);
         final List<Engine> result = underTest.listAll();

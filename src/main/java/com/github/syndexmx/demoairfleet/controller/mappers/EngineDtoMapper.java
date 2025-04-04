@@ -20,7 +20,7 @@ public class EngineDtoMapper {
         }
     }
 
-    public EngineDto engineToEngineDto(Engine engine) {
+    public static EngineDto engineToEngineDto(Engine engine) {
         final EngineDto engineDto = EngineDto.builder()
                 .id(engine.getId())
                 .engineTypeName(engine.getEngineType().getTypeName())
@@ -32,7 +32,7 @@ public class EngineDtoMapper {
         return engineDto;
     }
 
-    public Engine engineDtoToEngine(EngineDto engineDto) {
+    public static Engine engineDtoToEngine(EngineDto engineDto) {
         Engine engine = Engine.builder()
                 .id(engineDto.getId())
                 .engineType(typeNameToTypeType.get(engineDto.getEngineTypeName()))

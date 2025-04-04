@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.impl;
+package com.github.syndexmx.demoairfleet.service.services;
 
 
 import com.github.syndexmx.demoairfleet.domain.Pilot;

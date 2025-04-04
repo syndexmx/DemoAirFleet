@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PilotEntityMapper {
 
-    public PilotEntity pilotToPilotEntity(Pilot pilot) {
+    public static PilotEntity pilotToPilotEntity(Pilot pilot) {
         final PilotEntity pilotEntity = PilotEntity.builder()
                 .id(pilot.getId())
                 .sex(pilot.getSex().toString())
@@ -25,7 +25,7 @@ public class PilotEntityMapper {
         return pilotEntity;
     }
 
-    public Pilot pilotEntityToPilot(PilotEntity pilotEntity) {
+    public static Pilot pilotEntityToPilot(PilotEntity pilotEntity) {
         Pilot pilot = Pilot.builder()
                 .id(pilotEntity.getId())
                 .sex(Sex.valueOf(pilotEntity.getSex()))

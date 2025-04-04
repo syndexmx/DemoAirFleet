@@ -15,8 +15,6 @@ import java.util.UUID;
 @Component
 public class AircraftDtoMapper {
 
-    private EngineDtoMapper engineDtoMapper;
-
     private static Map<String, AircraftType> typeNameToTypeType = new HashMap<>();
 
     @Autowired
@@ -24,14 +22,13 @@ public class AircraftDtoMapper {
         for (AircraftType aircraftType : AircraftType.values()) {
             typeNameToTypeType.put(aircraftType.getTypeName(), aircraftType);
         }
-        this.engineDtoMapper = engineDtoMapper;
     }
 
-    public AircraftType getTypeByName(String name) {
+    public static AircraftType getTypeByName(String name) {
         return typeNameToTypeType.get(name);
     };
 
-    public AircraftDto aircraftToAircraftDto(Aircraft aircraft) {
+    public static AircraftDto aircraftToAircraftDto(Aircraft aircraft) {
         final AircraftDto aircraftDto = AircraftDto.builder()
                 .id(aircraft.getId())
                 .aircraftType(aircraft.getAircraftType().getTypeName())
@@ -44,14 +41,14 @@ public class AircraftDtoMapper {
                 .registration(aircraft.getRegistration())
                 .serialNumber(aircraft.getSerialNumber())
                 .engineList(aircraft.getEngineList().stream()
-                        .map(engineDto -> engineDtoMapper
+                        .map(engineDto -> EngineDtoMapper
                                 .engineToEngineDto(engineDto))
                         .toList())
                 .build();
         return aircraftDto;
     }
 
-    public Aircraft aircraftDtoToAircraft(AircraftDto aircraftDto) {
+    public static Aircraft aircraftDtoToAircraft(AircraftDto aircraftDto) {
         Aircraft aircraft = Aircraft.builder()
                 .id(aircraftDto.getId())
                 .aircraftType(typeNameToTypeType.get(aircraftDto.getAircraftType()))
@@ -64,7 +61,7 @@ public class AircraftDtoMapper {
                 .registration(aircraftDto.getRegistration())
                 .serialNumber(aircraftDto.getSerialNumber())
                 .engineList(aircraftDto.getEngineList().stream()
-                        .map(engineDto -> engineDtoMapper
+                        .map(engineDto -> EngineDtoMapper
                                 .engineDtoToEngine(engineDto))
                         .toList())
                 .build();
@@ -84,7 +81,7 @@ public class AircraftDtoMapper {
                 .registration(aircraftDto.getRegistration())
                 .serialNumber(aircraftDto.getSerialNumber())
                 .engineList(aircraftDto.getEngineList().stream()
-                        .map(engineDto -> engineDtoMapper
+                        .map(engineDto -> EngineDtoMapper
                                 .engineDtoToEngine(engineDto))
                         .toList())
                 .build();
