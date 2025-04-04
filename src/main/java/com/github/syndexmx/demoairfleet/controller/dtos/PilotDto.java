@@ -1,5 +1,6 @@
 package com.github.syndexmx.demoairfleet.controller.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+@Schema(name = "Pilot",
+        description = "Пилот")
 public class PilotDto {
 
     private String id;

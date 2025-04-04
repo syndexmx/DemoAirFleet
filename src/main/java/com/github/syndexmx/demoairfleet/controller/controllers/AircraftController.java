@@ -5,6 +5,8 @@ import com.github.syndexmx.demoairfleet.domain.Aircraft;
 import com.github.syndexmx.demoairfleet.controller.dtos.AircraftDto;
 import com.github.syndexmx.demoairfleet.controller.exceptions.AirfleetIncorrectApiRequestException;
 import com.github.syndexmx.demoairfleet.services.AircraftService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
+@Tag(name = "Aircrafts", description = "API Самолетов (бортов)")
 public class AircraftController {
 
     private final String ROOT_API_PATH = "/api/v0/aircrafts";
@@ -30,6 +33,8 @@ public class AircraftController {
     }
 
     @PostMapping(ROOT_API_PATH)
+    @Operation(summary = "Add an aircraft",
+            description = "Добавление самолёта")
     public ResponseEntity<AircraftDto> create(@RequestBody final AircraftDto aircraftDto) {
         log.info("POST " + ROOT_API_PATH + " " + aircraftDto.toString());
         final Aircraft aircraft = aircraftDtoMapper.aircraftDtoNoIdToAircraft(aircraftDto);
@@ -39,6 +44,8 @@ public class AircraftController {
     }
 
     @GetMapping(ROOT_API_PATH +"/{aircraftId}")
+    @Operation(summary = "Get aircraft info",
+            description = "Получить данные самолёта")
     public ResponseEntity<AircraftDto> retrieve(@PathVariable Long aircraftId) {
         final Optional<Aircraft> foundAircraft = aircraftService.findById(aircraftId);
         if (foundAircraft.isEmpty()) {
@@ -50,6 +57,8 @@ public class AircraftController {
     }
 
     @GetMapping(ROOT_API_PATH)
+    @Operation(summary = "Get aircraft list",
+            description = "Получить список самолётов")
     public ResponseEntity<List<AircraftDto>> retrieveAll() {
         final List<Aircraft> listFound = aircraftService.listAll();
         final List<AircraftDto> listFoundDtos = listFound.stream()
@@ -60,6 +69,8 @@ public class AircraftController {
     }
 
     @PutMapping(ROOT_API_PATH +"/{aircraftId}")
+    @Operation(summary = "Update/Correct aircraft info",
+            description = "Записать обновленные данные самолёта")
     public ResponseEntity<AircraftDto> update(@PathVariable String aircraftId,
                                               @RequestBody final AircraftDto aircraftDto) {
         log.info("PUT " + ROOT_API_PATH + "/" + aircraftId + aircraftDto.toString());
@@ -78,6 +89,8 @@ public class AircraftController {
     }
 
     @DeleteMapping(ROOT_API_PATH +"/{aircraftId}")
+    @Operation(summary = "Delete an aircraft",
+            description = "Удалить данные самолёта")
     public ResponseEntity deleteById(@PathVariable Long aircraftId) {
         log.info("DELETE " + ROOT_API_PATH + "/" + aircraftId);
         aircraftService.deleteById(aircraftId);
