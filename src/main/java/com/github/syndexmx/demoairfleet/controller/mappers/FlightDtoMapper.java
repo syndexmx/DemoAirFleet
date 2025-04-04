@@ -11,16 +11,7 @@ import java.util.UUID;
 @Component
 public class FlightDtoMapper {
 
-    private PilotDtoMapper pilotDtoMapper;
-    private AircraftDtoMapper aircraftDtoMapper;
-
-    @Autowired
-    public FlightDtoMapper(PilotDtoMapper pilotDtoMapper, AircraftDtoMapper aircraftDtoMapper) {
-        this.pilotDtoMapper = pilotDtoMapper;
-        this.aircraftDtoMapper = aircraftDtoMapper;
-    }
-
-    public FlightDto flightToFlightDto(Flight flight) {
+    public static FlightDto flightToFlightDto(Flight flight) {
         final FlightDto flightDto = FlightDto.builder()
                 .id(flight.getId().toString())
                 .name(flight.getName())
@@ -28,9 +19,9 @@ public class FlightDtoMapper {
                 .pax(flight.getPax())
                 .callsign(flight.getCallsign())
                 .date(flight.getDate().toString())
-                .aircraft(aircraftDtoMapper.aircraftToAircraftDto(flight.getAircraft()))
-                .captain(pilotDtoMapper.pilotToPilotDto(flight.getCaptain()))
-                .firstOfficer(pilotDtoMapper.pilotToPilotDto(flight.getFirstOfficer()))
+                .aircraft(AircraftDtoMapper.aircraftToAircraftDto(flight.getAircraft()))
+                .captain(PilotDtoMapper.pilotToPilotDto(flight.getCaptain()))
+                .firstOfficer(PilotDtoMapper.pilotToPilotDto(flight.getFirstOfficer()))
                 .build();
         return flightDto;
     }
@@ -43,9 +34,9 @@ public class FlightDtoMapper {
                 .pax(flightDto.getPax())
                 .callsign(flightDto.getCallsign())
                 .date(LocalDate.parse(flightDto.getDate()))
-                .aircraft(aircraftDtoMapper.aircraftDtoToAircraft(flightDto.getAircraft()))
-                .captain(pilotDtoMapper.pilotDtoToPilot(flightDto.getCaptain()))
-                .firstOfficer(pilotDtoMapper.pilotDtoToPilot(flightDto.getFirstOfficer()))
+                .aircraft(AircraftDtoMapper.aircraftDtoToAircraft(flightDto.getAircraft()))
+                .captain(PilotDtoMapper.pilotDtoToPilot(flightDto.getCaptain()))
+                .firstOfficer(PilotDtoMapper.pilotDtoToPilot(flightDto.getFirstOfficer()))
                 .build();
         return flight;
     }
@@ -58,9 +49,9 @@ public class FlightDtoMapper {
                 .pax(flightDto.getPax())
                 .callsign(flightDto.getCallsign())
                 .date(LocalDate.parse(flightDto.getDate()))
-                .aircraft(aircraftDtoMapper.aircraftDtoToAircraft(flightDto.getAircraft()))
-                .captain(pilotDtoMapper.pilotDtoToPilot(flightDto.getCaptain()))
-                .firstOfficer(pilotDtoMapper.pilotDtoToPilot(flightDto.getFirstOfficer()))
+                .aircraft(AircraftDtoMapper.aircraftDtoToAircraft(flightDto.getAircraft()))
+                .captain(PilotDtoMapper.pilotDtoToPilot(flightDto.getCaptain()))
+                .firstOfficer(PilotDtoMapper.pilotDtoToPilot(flightDto.getFirstOfficer()))
                 .build();
         return flight;
     }

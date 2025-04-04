@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.controllers;
+package com.github.syndexmx.demoairfleet.controller.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -56,7 +56,7 @@ public class AircraftControllerIT {
         List<Aircraft> savedAircraftList = aircraftService.listAll();
         assertEquals(1, savedAircraftList.size());
         Aircraft savedAircraft = savedAircraftList.get(0);
-        final UUID id = savedAircraft.getId();
+        final Long id = savedAircraft.getId();
         aircraft.setId(id);
         assertEquals(aircraft, savedAircraft);
     }
@@ -65,7 +65,7 @@ public class AircraftControllerIT {
     public void testThatAircraftIsUpdated() throws Exception {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
         Aircraft savedAircraft = aircraftService.create(aircraft);
-        final UUID id = savedAircraft.getId();
+        final Long id = savedAircraft.getId();
         Aircraft modifiedAircraft = AircraftTestSupplierKit.getModifiedTestAircraft();
         modifiedAircraft.setId(id);
         final AircraftDto modifiedAircraftDto = aircraftDtoMapper.aircraftToAircraftDto(modifiedAircraft);
@@ -81,7 +81,7 @@ public class AircraftControllerIT {
     @Test
     public void testThatRetrieveReturnsNotFoundWhenAbsent() throws Exception {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestNonExistentAircraft();
-        final UUID id = aircraft.getId();
+        final Long id = aircraft.getId();
         mockMvc.perform(MockMvcRequestBuilders.get(ROOT_API_PATH + "/" + id.toString()))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
@@ -90,7 +90,7 @@ public class AircraftControllerIT {
     public void testThatRetrieveReturnsAircraftWhenExists() throws Exception {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
         final Aircraft aircraftSaved = aircraftService.create(aircraft);
-        final UUID id = aircraftSaved.getId();
+        final Long id = aircraftSaved.getId();
         final AircraftDto aircraftDto = aircraftDtoMapper.aircraftToAircraftDto(aircraftSaved);
         final ObjectMapper objectMapper = new ObjectMapper();
         final String aircraftJson = objectMapper.writeValueAsString(aircraftDto);
@@ -123,7 +123,7 @@ public class AircraftControllerIT {
     @Test
     public void testThatDeleteAircraftByIdReturnsHttp204WhenAbsent() throws Exception {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final UUID id = aircraft.getId();
+        final Long id = aircraft.getId();
         mockMvc.perform(MockMvcRequestBuilders.delete(ROOT_API_PATH + "/" + id.toString()))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
@@ -132,7 +132,7 @@ public class AircraftControllerIT {
     public void testThatDeleteAircraftByIdDeletesAircraft() throws Exception {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
         final Aircraft savedAircraft = aircraftService.save(aircraft);
-        final UUID id = savedAircraft.getId();
+        final Long id = savedAircraft.getId();
         mockMvc.perform(MockMvcRequestBuilders.delete(ROOT_API_PATH + "/" + id))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }

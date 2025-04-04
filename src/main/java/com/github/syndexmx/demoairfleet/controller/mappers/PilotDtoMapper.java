@@ -12,14 +12,7 @@ import java.util.UUID;
 @Component
 public class PilotDtoMapper {
 
-    private AircraftDtoMapper aircraftDtoMapper;
-
-    @Autowired
-    public PilotDtoMapper(AircraftDtoMapper aircraftDtoMapper) {
-        this.aircraftDtoMapper = aircraftDtoMapper;
-    }
-
-    public PilotDto pilotToPilotDto(Pilot pilot) {
+    public static PilotDto pilotToPilotDto(Pilot pilot) {
         final PilotDto pilotDto = PilotDto.builder()
                 .id(pilot.getId().toString())
                 .sex(pilot.getSex().toString())
@@ -35,7 +28,7 @@ public class PilotDtoMapper {
         return pilotDto;
     }
 
-    public Pilot pilotDtoToPilot(PilotDto pilotDto) {
+    public static Pilot pilotDtoToPilot(PilotDto pilotDto) {
         Pilot pilot = Pilot.builder()
                 .id(UUID.fromString(pilotDto.getId()))
                 .sex(Sex.valueOf(pilotDto.getSex()))
@@ -46,7 +39,7 @@ public class PilotDtoMapper {
                 .hoursInFlight(pilotDto.getHoursInFlight())
                 .certifiedAircraftTypes(pilotDto.getCertifiedAircraftTypes().stream()
                         .map(aircraftTypeName ->
-                                aircraftDtoMapper.getTypeByName(aircraftTypeName))
+                                AircraftDtoMapper.getTypeByName(aircraftTypeName))
                         .toList())
                 .build();
         return pilot;
@@ -63,7 +56,7 @@ public class PilotDtoMapper {
                 .hoursInFlight(pilotDto.getHoursInFlight())
                 .certifiedAircraftTypes(pilotDto.getCertifiedAircraftTypes().stream()
                         .map(aircraftTypeName ->
-                                aircraftDtoMapper.getTypeByName(aircraftTypeName))
+                                AircraftDtoMapper.getTypeByName(aircraftTypeName))
                         .toList())
                 .build();
         return pilot;

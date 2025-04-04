@@ -8,16 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FlightEntityMapper {
 
-    private PilotEntityMapper pilotEntityMapper;
-    private AircraftEntityMapper aircraftEntityMapper;
-
-    @Autowired
-    public FlightEntityMapper(PilotEntityMapper pilotEntityMapper, AircraftEntityMapper aircraftEntityMapper) {
-        this.pilotEntityMapper = pilotEntityMapper;
-        this.aircraftEntityMapper = aircraftEntityMapper;
-    }
-
-    public FlightEntity flightToFlightEntity(Flight flight) {
+    public static FlightEntity flightToFlightEntity(Flight flight) {
         final FlightEntity flightEntity = FlightEntity.builder()
                 .id(flight.getId())
                 .name(flight.getName())
@@ -25,14 +16,14 @@ public class FlightEntityMapper {
                 .pax(flight.getPax())
                 .callsign(flight.getCallsign())
                 .date(flight.getDate())
-                .aircraft(aircraftEntityMapper.aircraftToAircraftEntity(flight.getAircraft()))
-                .captain(pilotEntityMapper.pilotToPilotEntity(flight.getCaptain()))
-                .firstOfficer(pilotEntityMapper.pilotToPilotEntity(flight.getFirstOfficer()))
+                .aircraft(AircraftEntityMapper.aircraftToAircraftEntity(flight.getAircraft()))
+                .captain(PilotEntityMapper.pilotToPilotEntity(flight.getCaptain()))
+                .firstOfficer(PilotEntityMapper.pilotToPilotEntity(flight.getFirstOfficer()))
                 .build();
         return flightEntity;
     }
 
-    public Flight flightEntityToFlight(FlightEntity flightEntity) {
+    public static Flight flightEntityToFlight(FlightEntity flightEntity) {
         Flight flight = Flight.builder()
                 .id(flightEntity.getId())
                 .name(flightEntity.getName())
@@ -40,9 +31,9 @@ public class FlightEntityMapper {
                 .pax(flightEntity.getPax())
                 .callsign(flightEntity.getCallsign())
                 .date(flightEntity.getDate())
-                .aircraft(aircraftEntityMapper.aircraftEntityToAircraft(flightEntity.getAircraft()))
-                .captain(pilotEntityMapper.pilotEntityToPilot(flightEntity.getCaptain()))
-                .firstOfficer(pilotEntityMapper.pilotEntityToPilot(flightEntity.getFirstOfficer()))
+                .aircraft(AircraftEntityMapper.aircraftEntityToAircraft(flightEntity.getAircraft()))
+                .captain(PilotEntityMapper.pilotEntityToPilot(flightEntity.getCaptain()))
+                .firstOfficer(PilotEntityMapper.pilotEntityToPilot(flightEntity.getFirstOfficer()))
                 .build();
         return flight;
     }

@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.controllers;
+package com.github.syndexmx.demoairfleet.controller.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

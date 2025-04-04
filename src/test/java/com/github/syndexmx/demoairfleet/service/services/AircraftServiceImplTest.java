@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.impl;
+package com.github.syndexmx.demoairfleet.service.services;
 
 
 import com.github.syndexmx.demoairfleet.domain.Aircraft;
@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,13 +32,10 @@ public class AircraftServiceImplTest {
     @InjectMocks
     private AircraftServiceImpl underTest;
 
-    @Autowired
-    AircraftEntityMapper aircraftEntityMapper; // TO DO: make it work
-
     @Test
     public void testThatAircraftIsCreated() {
         Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        AircraftEntity aircraftEntity = aircraftEntityMapper.aircraftToAircraftEntity(aircraft);
+        AircraftEntity aircraftEntity = AircraftEntityMapper.aircraftToAircraftEntity(aircraft);
         when(aircraftRepository.save(any())).thenReturn(aircraftEntity);
         final Aircraft savedAircraft = underTest.create(aircraft);
         aircraft.setId(savedAircraft.getId());
@@ -49,7 +45,7 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatAircraftIsSaved() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final AircraftEntity aircraftEntity = aircraftEntityMapper.aircraftToAircraftEntity(aircraft);
+        final AircraftEntity aircraftEntity = AircraftEntityMapper.aircraftToAircraftEntity(aircraft);
         when(aircraftRepository.save(eq(aircraftEntity))).thenReturn(aircraftEntity);
         final Aircraft savedAircraft = underTest.save(aircraft);
         assertEquals(aircraft, savedAircraft);
@@ -67,7 +63,7 @@ public class AircraftServiceImplTest {
     @Test
     public void testThatFindByIdReturnsEntityWhenPresent() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final AircraftEntity aircraftEntity = aircraftEntityMapper.aircraftToAircraftEntity(aircraft);
+        final AircraftEntity aircraftEntity = AircraftEntityMapper.aircraftToAircraftEntity(aircraft);
         final Long idString = aircraft.getId();
         when(aircraftRepository.findById(eq(idString))).thenReturn(Optional.of(aircraftEntity));
         final Optional<Aircraft> foundAircraft = underTest.findById(idString);
@@ -84,7 +80,7 @@ public class AircraftServiceImplTest {
     @Test
     public void testListAircraftsReturnsListWhenExist() {
         final Aircraft aircraft = AircraftTestSupplierKit.getTestAircraft();
-        final AircraftEntity aircraftEntity = aircraftEntityMapper.aircraftToAircraftEntity(aircraft);
+        final AircraftEntity aircraftEntity = AircraftEntityMapper.aircraftToAircraftEntity(aircraft);
         List<AircraftEntity> listOfExisting = new ArrayList<>(List.of(aircraftEntity));
         when(aircraftRepository.findAll()).thenReturn(listOfExisting);
         final List<Aircraft> result = underTest.listAll();

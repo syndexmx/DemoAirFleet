@@ -1,4 +1,4 @@
-package com.github.syndexmx.demoairfleet.controllers;
+package com.github.syndexmx.demoairfleet.controller.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -56,7 +56,7 @@ public class EngineControllerIT {
         List<Engine> savedengineList = engineService.listAll();
         assertEquals(1, savedengineList.size());
         Engine savedengine = savedengineList.get(0);
-        final UUID id = savedengine.getId();
+        final Long id = savedengine.getId();
         engine.setId(id);
         assertEquals(engine, savedengine);
     }
@@ -65,7 +65,7 @@ public class EngineControllerIT {
     public void testThatengineIsUpdated() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         Engine savedengine = engineService.create(engine);
-        final UUID id = savedengine.getId();
+        final Long id = savedengine.getId();
         Engine modifiedEngine = EngineTestSupplierKit.getModifiedTestengine();
         modifiedEngine.setId(id);
         final EngineDto modifiedengineDto = engineDtoMapper.engineToEngineDto(modifiedEngine);
@@ -81,7 +81,7 @@ public class EngineControllerIT {
     @Test
     public void testThatRetrieveReturnsNotFoundWhenAbsent() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestNonExistentengine();
-        final UUID id = engine.getId();
+        final Long id = engine.getId();
         mockMvc.perform(MockMvcRequestBuilders.get(ROOT_API_PATH + "/" + id.toString()))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
@@ -90,7 +90,7 @@ public class EngineControllerIT {
     public void testThatRetrieveReturnsengineWhenExists() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         final Engine engineSaved = engineService.create(engine);
-        final UUID id = engineSaved.getId();
+        final Long id = engineSaved.getId();
         final EngineDto engineDto = engineDtoMapper.engineToEngineDto(engineSaved);
         final ObjectMapper objectMapper = new ObjectMapper();
         final String engineJson = objectMapper.writeValueAsString(engineDto);
@@ -123,7 +123,7 @@ public class EngineControllerIT {
     @Test
     public void testThatDeleteengineByIdReturnsHttp204WhenAbsent() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestengine();
-        final UUID id = engine.getId();
+        final Long id = engine.getId();
         mockMvc.perform(MockMvcRequestBuilders.delete(ROOT_API_PATH + "/" + id.toString()))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
@@ -132,7 +132,7 @@ public class EngineControllerIT {
     public void testThatDeleteengineByIdDeletesengine() throws Exception {
         final Engine engine = EngineTestSupplierKit.getTestengine();
         final Engine savedEngine = engineService.save(engine);
-        final UUID id = savedEngine.getId();
+        final Long id = savedEngine.getId();
         mockMvc.perform(MockMvcRequestBuilders.delete(ROOT_API_PATH + "/" + id))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }

@@ -17,6 +17,9 @@ public class FlightTestSupplierKit {
                 .route("MH-370")
                 .pax(230)
                 .callsign("8673")
+                .captain(PilotTestSupplierKit.getTestPilot())
+                .firstOfficer(PilotTestSupplierKit.getTestPilot())
+                .aircraft(AircraftTestSupplierKit.getTestAircraft())
                 .date(LocalDate.parse("2024-11-09"))
                 .build();
     }
@@ -27,6 +30,9 @@ public class FlightTestSupplierKit {
                 .name("693")
                 .route("MH-370")
                 .pax(230)
+                .captain(PilotTestSupplierKit.getTestPilot())
+                .firstOfficer(PilotTestSupplierKit.getTestPilot())
+                .aircraft(AircraftTestSupplierKit.getTestAircraft())
                 .callsign("8673")
                 .date(LocalDate.parse("2024-11-09"))
                 .build();
